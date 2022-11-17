@@ -7,6 +7,8 @@ import CommunityView from '@/views/CommunityView'
 import MypageView from '@/views/MypageView'
 import SignupView from '@/views/SignupView'
 import LoginView from '@/views/LoginView'
+import MovieDetail from '@/views/MovieDetail'
+import ArticleDetail from '@/views/ArticleDetail'
 
 Vue.use(VueRouter)
 
@@ -45,6 +47,16 @@ const routes = [
     path: '/login',
     name: 'login',
     component: LoginView
+  },
+  {
+    path: '/movie/detail/:movie_id',
+    name: 'moviedetail',
+    component: MovieDetail
+  },
+  {
+    path: '/article/detail/:article_id',
+    name: 'articledetail',
+    component: ArticleDetail
   },
 ]
 
