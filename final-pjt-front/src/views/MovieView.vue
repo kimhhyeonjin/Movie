@@ -19,6 +19,14 @@ export default {
     PopularView,
     TopratedView
   },
+  created() {
+    this.getMovies()
+  },
+  methods: {
+    getMovies() {
+      this.$store.dispatch('getMovies')
+    }
+  }
 }
 </script>
 

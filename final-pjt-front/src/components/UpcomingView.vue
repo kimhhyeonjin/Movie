@@ -1,7 +1,11 @@
 <template>
   <div>
     <h2>UpcomingView</h2>
-    <UpcomingListView/>
+    <UpcomingListView
+      v-for="movie in movies"
+      :key="movie.id"
+      :movie="movie"
+    />
   </div>
 </template>
 
@@ -12,6 +16,11 @@ export default {
   name: 'UpcomingView',
   components: {
     UpcomingListView,
+  },
+  computed: {
+    movies() {
+      return this.$store.state.movies
+    }
   }
 }
 </script>

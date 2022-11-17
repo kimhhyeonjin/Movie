@@ -1,12 +1,16 @@
 <template>
   <div>
-    <h3>UpcomingListView</h3>
+    <!-- <h3>UpcomingListView</h3> -->
+    {{ movie.title }}
   </div>
 </template>
 
 <script>
 export default {
-  name: 'UpcomingListView'
+  name: 'UpcomingListView',
+  props: {
+    movie: Object,
+  }
 }
 </script>
 

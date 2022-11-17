@@ -1,7 +1,11 @@
 <template>
   <div>
     <h2>PopularView</h2>
-    <PopularListView/>
+    <PopularListView
+      v-for="movie in movies"
+      :key="movie.id"
+      :movie="movie"
+    />
   </div>
 </template>
 
@@ -12,6 +16,11 @@ export default {
   name: 'PopularView',
   components: {
     PopularListView,
+  },
+  computed: {
+    movies() {
+      return this.$store.state.movies
+    }
   }
 }
 </script>
