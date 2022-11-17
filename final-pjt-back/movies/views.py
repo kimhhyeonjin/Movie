@@ -10,8 +10,13 @@ from .serializers import (
     ReviewSerializer,
 )
 
+# permission Decorators
+from rest_framework.decorators import permission_classes
+from rest_framework.permissions import IsAuthenticated
+
 # 영화 목록
 @api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def movie_list(request):
     movies = get_list_or_404(Movie)
     serializer = MovieListSerializer(movies, many=True)
@@ -33,6 +38,7 @@ def review_list(request):
 
 # 영화별 리뷰 생성
 @api_view(['POST'])
+@permission_classes([IsAuthenticated])
 def create_review(request, movie_pk):
     movie = get_object_or_404(Movie, pk=movie_pk)
     # user = request.user
@@ -46,6 +52,7 @@ def create_review(request, movie_pk):
 
 # 영화별 리뷰별 조회, 수정, 삭제
 @api_view(['GET', 'PUT', 'DELETE'])
+@permission_classes([IsAuthenticated])
 def review_detail(request, review_pk):
     review = get_object_or_404(Review, pk=review_pk)
 

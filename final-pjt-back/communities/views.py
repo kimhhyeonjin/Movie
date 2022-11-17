@@ -9,9 +9,15 @@ from .serializers import (
     CommentListSerializer,
     CommentDetailSerializer
 )
+
+# permission Decorators
+from rest_framework.decorators import permission_classes
+from rest_framework.permissions import IsAuthenticated
+
 # Create your views here.
 
 @api_view(['GET', 'POST'])
+@permission_classes([IsAuthenticated])
 def article_list(request):
     if request.method == 'GET':
         articles = get_list_or_404(Article)
