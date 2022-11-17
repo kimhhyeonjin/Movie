@@ -1,13 +1,13 @@
 <template>
   <div id="app">
     <nav>
-      <router-link to="/">메인</router-link> |
-      <router-link to="/search">검색</router-link> |
-      <router-link to="/recommend">추천</router-link> |
-      <router-link to="/community">게시판</router-link> |
-      <router-link to="/mypage">마이페이지</router-link> |
-      <router-link to="/signup">회원가입</router-link> |
-      <router-link to="/login">로그인</router-link> |
+      <router-link :to="{ name: 'MovieView' }">메인</router-link> |
+      <router-link :to="{ name: 'SearchView' }">검색</router-link> |
+      <router-link :to="{ name: 'RecommendView' }">추천</router-link> |
+      <router-link :to="{ name: 'CommunityView' }">게시판</router-link> |
+      <router-link :to="{ name: 'MypageView' }">마이페이지</router-link> |
+      <router-link :to="{ name: 'SignupView' }">회원가입</router-link> |
+      <router-link :to="{ name: 'LoginView' }">로그인</router-link> |
     </nav>
     <router-view/>
   </div>

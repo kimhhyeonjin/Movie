@@ -15,47 +15,47 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    name: 'main',
+    name: 'MovieView',
     component: MovieView
   },
   {
     path: '/search',
-    name: 'search',
+    name: 'SearchView',
     component: SearchView
   },
   {
     path: '/recommend',
-    name: 'recommend',
+    name: 'RecommendView',
     component: RecommendView
   },
   {
     path: '/community',
-    name: 'community',
+    name: 'CommunityView',
     component: CommunityView
   },
   {
     path: '/mypage',
-    name: 'mypage',
+    name: 'MypageView',
     component: MypageView
   },
   {
     path: '/signup',
-    name: 'signup',
+    name: 'SignupView',
     component: SignupView
   },
   {
     path: '/login',
-    name: 'login',
+    name: 'LoginView',
     component: LoginView
   },
   {
     path: '/movie/detail/:movie_id',
-    name: 'moviedetail',
+    name: 'MovieDetail',
     component: MovieDetail
   },
   {
     path: '/article/detail/:article_id',
-    name: 'articledetail',
+    name: 'ArticleDetail',
     component: ArticleDetail
   },
 ]
