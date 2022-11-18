@@ -53,8 +53,9 @@ def create_review(request, movie_pk):
 # 영화별 리뷰별 조회, 수정, 삭제
 @api_view(['GET', 'PUT', 'DELETE'])
 @permission_classes([IsAuthenticated])
-def review_detail(request, review_pk):
+def review_detail(request, review_pk, movie_pk):
     review = get_object_or_404(Review, pk=review_pk)
+    movie = get_object_or_404(Movie, pk=movie_pk)
 
     if request.method == 'GET':
         serializer = ReviewSerializer(review)

@@ -20,7 +20,7 @@ class CommentListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Comment
-        fields = ('title',)
+        fields = ('content',)
 
 # 댓글에 대한 세부 정보 (내용, 생성일자, 수정일자)
 class CommentDetailSerializer(serializers.ModelSerializer):
@@ -28,3 +28,4 @@ class CommentDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comment
         fields = '__all__'
+        read_only_fields=('article',)
