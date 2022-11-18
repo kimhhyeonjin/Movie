@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- <h3>UpcomingListView</h3> -->
-    <div @click="goMovieDetail(movie.movie_id)">
+    <div @click="goMovieDetail(movie.id)">
     <img
       :src="`https://image.tmdb.org/t/p/original${movie.poster_path}`"
       :alt="`${movie.title}_poster`"
