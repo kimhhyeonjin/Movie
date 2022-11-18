@@ -31,8 +31,8 @@ def movie_detail(request, movie_pk):
 
 # 영화별 리뷰 목록
 @api_view(['GET'])
-def review_list(request):
-    reviews = get_list_or_404(Review)
+def review_list(request, movie_pk):
+    reviews = get_list_or_404(Review, movie=movie_pk)
     serializer = ReviewSerializer(reviews, many=True)
     return Response(serializer.data)
 
