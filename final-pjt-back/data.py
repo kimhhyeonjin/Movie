@@ -33,6 +33,7 @@ for i in range(1, num):
         'vote_average',
         'poster_path',
         'backdrop_path',
+        'popularity',
     ]
 
     # 원하는 데이터를 리스트에 모으기
