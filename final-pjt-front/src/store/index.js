@@ -15,6 +15,7 @@ export default new Vuex.Store({
   state: {
     movies: [],
     token: null,
+    user: [],
   },
   getters: {
     isLogin(state) {
@@ -28,6 +29,9 @@ export default new Vuex.Store({
     SAVE_TOKEN(state, token) {
       state.token = token
       router.push({ name: 'MovieView' })
+    },
+    GET_USER(state, user) {
+      state.user = user
     }
   },
   actions: {
@@ -78,6 +82,19 @@ export default new Vuex.Store({
           console.log(response)
           context.commit('SAVE_TOKEN', response.data.key)
         })
+        .then(
+          axios({
+            method: 'get',
+            url: `${API_URL}/accounts/user/`,
+            headers: {
+              Authorization: `Token ${context.state.token}`
+            },
+          })
+            .then((response) => {
+              console.log(response)
+              context.commit('GET_USER', response.data)
+            })
+        )
         .catch((error) => {
           console.log(error)
         })

@@ -8,10 +8,21 @@
       <router-link :to="{ name: 'MypageView' }">마이페이지</router-link> |
       <router-link :to="{ name: 'SignupView' }">회원가입</router-link> |
       <router-link :to="{ name: 'LoginView' }">로그인</router-link> |
+      {{ getUsername.username }}님 안녕하세요!
     </nav>
     <router-view/>
   </div>
 </template>
+
+<script>
+export default {
+  computed: {
+    getUsername() {
+      return this.$store.state.user
+    }
+  }
+}
+</script>
 
 <style>
 #app {
