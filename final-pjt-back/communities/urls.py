@@ -1,6 +1,7 @@
 from django.urls import path
 from . import views
 
+# path('communities/', include('communities.urls')),
 urlpatterns = [
     # 전체 게시글 조회 및 생성
     path('articles/', views.article_list),

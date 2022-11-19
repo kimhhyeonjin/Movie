@@ -6,7 +6,7 @@ class ArticleListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Article
-        fields = ('title',)
+        fields = ('id', 'title', 'user',)
 
 # 게시글에 대한 세부 정보 (제목, 내용, 생성일자, 수정일자)
 class ArticleDetailSerializer(serializers.ModelSerializer):
@@ -20,7 +20,7 @@ class CommentListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Comment
-        fields = ('content',)
+        fields = ('id', 'content',)
 
 # 댓글에 대한 세부 정보 (내용, 생성일자, 수정일자)
 class CommentDetailSerializer(serializers.ModelSerializer):

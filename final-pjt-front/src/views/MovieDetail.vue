@@ -1,20 +1,20 @@
 <template>
   <div>
     <h3>MovieDetail</h3>
-    <p>제목: {{ movie.title }}</p><br>
-    <p>개봉일: {{ movie.release_date }}</p><br>
-    <p>줄거리: {{ movie.overview }}</p><br>
-    <p>평점: {{ movie.vote_average }}</p><br>
-    <p>popularity: {{ movie.popularity }}</p><br>
+    <p>제목: {{ movie?.title }}</p><br>
+    <p>개봉일: {{ movie?.release_date }}</p><br>
+    <p>줄거리: {{ movie?.overview }}</p><br>
+    <p>평점: {{ movie?.vote_average }}</p><br>
+    <p>popularity: {{ movie?.popularity }}</p><br>
     <img
-      :src="`https://image.tmdb.org/t/p/original${ movie.poster_path }`"
+      :src="`https://image.tmdb.org/t/p/original${ movie?.poster_path }`"
       alt="movie_poster"
       width="180px"
       height="260px"
     >
     <br>
     <img
-      :src="`https://image.tmdb.org/t/p/original${ movie.backdrop_path }`"
+      :src="`https://image.tmdb.org/t/p/original${ movie?.backdrop_path }`"
       alt="movie_backdrop"
       width="180px"
       height="260px"

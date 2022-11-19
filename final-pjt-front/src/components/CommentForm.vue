@@ -1,12 +1,52 @@
 <template>
   <div>
     <h3>CommentForm</h3>
+    <form @submit.prevent="createComment">
+      <label for="content">내용 : </label>
+      <textarea id="content" cols="30" rows="5" v-model.trim="content"></textarea><br>
+      <input type="submit" id="submit">
+    </form>
   </div>
 </template>
 
 <script>
+import axios from 'axios'
+
+const API_URL = 'http://127.0.0.1:8000'
+
 export default {
-  name: 'CommentForm'
+  name: 'CommentForm',
+  data() {
+    return {
+      content: null,
+    }
+  },
+  methods: {
+    createComment() {
+      const content = this.content
+      if (!content) {
+        alert('내용을 입력해주세요!')
+        return
+      }
+      axios({
+        method: 'post',
+        url: `${API_URL}/communities/articles/${this.$route.params.article_id}/create_comment/`,
+        data: {
+          content: content,
+        },
+        headers: {
+          Authorization: `Token ${this.$store.state.token}`
+        }
+      })
+        .then((response) => {
+          console.log(response)
+          this.$router.push({name: 'CommentList', params: `${this.$route.params.article_id}`})
+        }) 
+        .catch((error) => {
+          console.log(error)
+        })
+    }
+  }
 }
 </script>
 

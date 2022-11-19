@@ -1,20 +1,54 @@
 <template>
   <div>
     <h3>ArticleDetail</h3>
-    <CommentForm/>
+    <p>작성자 : {{ article.user }}</p>
+    <p>제목 : {{ article.title }}</p>
+    <p>내용 : {{ article.content }}</p>
+    <p>작성일자 : {{ article.createdAt }}</p>
+    <p>수정일자 : {{ article.updatedAt }}</p>
     <CommentList/>
+    <CommentForm/>
   </div>
 </template>
 
 <script>
+import axios from 'axios'
 import CommentForm from '@/components/CommentForm'
-import CommentList from '@/components/CommentList'
+import CommentList from '@/views/CommentList'
+
+const API_URL = 'http://127.0.0.1:8000'
 
 export default {
   name: 'ArticleDetail',
+  data() {
+    return {
+      article: [],
+    }
+  },
   components: {
     CommentForm,
     CommentList,
+  },
+  methods: {
+    getArticleDetail() {
+      axios({
+        method: 'get',
+        url: `${API_URL}/communities/articles/${this.$route.params.article_id}/`,
+        headers: {
+          Authorization: `Token ${this.$store.state.token}`
+        }
+      })
+        .then((response) => {
+          console.log(response)
+          this.article = response.data
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    }
+  },
+  created() {
+    this.getArticleDetail()
   }
 }
 </script>

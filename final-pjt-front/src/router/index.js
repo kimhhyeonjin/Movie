@@ -9,6 +9,8 @@ import SignupView from '@/views/SignupView'
 import LoginView from '@/views/LoginView'
 import MovieDetail from '@/views/MovieDetail'
 import ArticleDetail from '@/views/ArticleDetail'
+import ArticleForm from '@/views/ArticleForm'
+import CommentList from '@/views/CommentList'
 
 Vue.use(VueRouter)
 
@@ -58,6 +60,16 @@ const routes = [
     name: 'ArticleDetail',
     component: ArticleDetail
   },
+  {
+    path: '/article/create/',
+    name: 'ArticleForm',
+    component: ArticleForm
+  },
+  {
+    path: '/article/:article_id/comments/',
+    name: 'CommentList',
+    component: CommentList
+  }
 ]
 
 const router = new VueRouter({
