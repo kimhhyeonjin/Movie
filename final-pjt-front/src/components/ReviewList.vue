@@ -1,11 +1,13 @@
 <template>
   <div>
     <h3>ReviewList</h3>
-    <ReviewListItem
-      v-for="review in reviews"
-      :key="review.id"
-      :review="review"
-    />
+    <div v-show="reviews">
+      <ReviewListItem
+        v-for="review in reviews"
+        :key="review.id"
+        :review="review"
+      />
+    </div>
   </div>
 </template>
 
@@ -30,7 +32,6 @@ export default {
   },
   methods: {
     getReviewList() {
-      console.log(this.reviews)
       axios({
         method: 'get',
         url: `${API_URL}/movies/${this.$route.params.movie_id}/reviews/`
@@ -41,6 +42,8 @@ export default {
           this.reviews = reviews
         })
         .catch((error) => {
+          this.reviews = false
+          console.log(this.reviews)
           console.log(error)
         })
     }

@@ -11,7 +11,6 @@
     </div>
     <br>
     {{ movie.title }}
-    {{ movie.id }}
   </div>
 </template>
 
