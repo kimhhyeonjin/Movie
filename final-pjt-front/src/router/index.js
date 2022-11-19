@@ -31,7 +31,7 @@ const routes = [
     component: RecommendView
   },
   {
-    path: '/community',
+    path: '/communities',
     name: 'CommunityView',
     component: CommunityView
   },
@@ -51,22 +51,22 @@ const routes = [
     component: LoginView
   },
   {
-    path: '/movie/detail/:movie_id',
+    path: '/movies/detail/:movie_id',
     name: 'MovieDetail',
     component: MovieDetail
   },
   {
-    path: '/article/detail/:article_id',
+    path: '/communities/articles/detail/:article_id',
     name: 'ArticleDetail',
     component: ArticleDetail
   },
   {
-    path: '/article/create/',
+    path: '/communities/articles/create_comment/',
     name: 'ArticleForm',
     component: ArticleForm
   },
   {
-    path: '/article/:article_id/comments/',
+    path: '/communities/articles/:article_id/comments/',
     name: 'CommentList',
     component: CommentList
   }
