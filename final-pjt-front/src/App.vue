@@ -8,7 +8,7 @@
       <router-link :to="{ name: 'SignupView' }">회원가입</router-link> |
       <router-link :to="{ name: 'LoginView' }">로그인</router-link> |
       <router-link :to="{ name: 'LogoutView' }">로그아웃</router-link> |
-      <router-link :to="{ name: 'MypageView' }">{{ user.username }}</router-link>님 안녕하세요
+      <router-link :to="{ name: 'MypageView' }">{{ user }}님 안녕하세요</router-link>
       <br>
     </nav>
     <router-view/>
@@ -19,7 +19,7 @@
 export default {
   data() {
     return {
-      user: this.$store.state.user,
+      user: this.$store.state.user
     }
   },
 }
