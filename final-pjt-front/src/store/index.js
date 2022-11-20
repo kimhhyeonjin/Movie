@@ -32,6 +32,11 @@ export default new Vuex.Store({
     },
     GET_USER(state, user) {
       state.user = user
+      console.log(state.user)
+    },
+    LOGOUT_USER(state) {
+      state.user = []
+      console.log(state.user)
     }
   },
   actions: {
@@ -90,15 +95,31 @@ export default new Vuex.Store({
               Authorization: `Token ${context.state.token}`
             },
           })
-            .then((response) => {
-              console.log(response)
-              context.commit('GET_USER', response.data)
-            })
+          .then((response) => {
+            console.log(response)
+            context.commit('GET_USER', response.data)
+          })
         )
         .catch((error) => {
           console.log(error)
         })
     },
+    logOut(context) {
+      axios({
+        method: 'post',
+        url: `${API_URL}/accounts/logout/`,
+        headers: {
+          Authorization: `Token ${context.state.token}`
+        }
+      })
+        .then((response) => {
+          console.log(response)
+          context.commit('LOGOUT_USER')
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    }
   },
   modules: {
   }

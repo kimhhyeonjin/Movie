@@ -7,6 +7,7 @@ import CommunityView from '@/views/CommunityView'
 import MypageView from '@/views/MypageView'
 import SignupView from '@/views/SignupView'
 import LoginView from '@/views/LoginView'
+import LogoutView from '@/views/LogoutView'
 import MovieDetail from '@/views/MovieDetail'
 import ArticleDetail from '@/views/ArticleDetail'
 import ArticleForm from '@/views/ArticleForm'
@@ -49,6 +50,11 @@ const routes = [
     path: '/login',
     name: 'LoginView',
     component: LoginView
+  },
+  {
+    path: '/logout',
+    name: 'LogoutView',
+    component: LogoutView
   },
   {
     path: '/movies/detail/:movie_id',
