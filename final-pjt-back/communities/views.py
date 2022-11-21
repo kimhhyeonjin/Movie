@@ -48,6 +48,16 @@ def article_detail(request, article_pk):
         article.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
+@api_view(['POST'])
+def article_like(request, article_pk):
+    article = get_object_or_404(Article, pk=article_pk)
+    user = request.user
+    
+    serializer = ArticleDetailSerializer(article, data=request.data)
+    if serializer.is_valid(raise_exception=True):
+        serializer.save(article=article, user=user)
+    return Response(serializer.data)
+
 @api_view(['GET'])
 def comment_list(request, article_pk):
     comments = get_list_or_404(Comment, article=article_pk)

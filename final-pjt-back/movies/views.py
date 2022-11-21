@@ -1,3 +1,5 @@
+from django.contrib.auth import get_user_model
+
 from django.http.response import JsonResponse
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
@@ -16,7 +18,6 @@ from rest_framework.permissions import IsAuthenticated
 
 # 영화 목록
 @api_view(['GET'])
-# @permission_classes([IsAuthenticated])
 def movie_list(request):
     movies = get_list_or_404(Movie)
     serializer = MovieListSerializer(movies, many=True)
@@ -41,10 +42,10 @@ def review_list(request, movie_pk):
 # @permission_classes([IsAuthenticated])
 def create_review(request, movie_pk):
     movie = get_object_or_404(Movie, pk=movie_pk)
-    # user = request.user
+    # user = get_user_model()
     serializer = ReviewSerializer(data=request.data)
     if serializer.is_valid(raise_exception=True):
-        serializer.save(movie=movie)
+        serializer.save(movie=movie, user=request.user)
         # serializer.movie = movie
         # serializer.user = user
         # serializer.save()

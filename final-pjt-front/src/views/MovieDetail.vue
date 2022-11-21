@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import ReviewList from '@/components/ReviewList'
+import ReviewList from '@/views/ReviewList'
 import ReviewForm from '@/components/ReviewForm'
 import axios from 'axios'
 

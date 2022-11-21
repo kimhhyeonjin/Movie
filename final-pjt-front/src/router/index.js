@@ -12,6 +12,7 @@ import MovieDetail from '@/views/MovieDetail'
 import ArticleDetail from '@/views/ArticleDetail'
 import ArticleForm from '@/views/ArticleForm'
 import CommentList from '@/views/CommentList'
+import ReviewList from '@/views/ReviewList'
 
 Vue.use(VueRouter)
 
@@ -62,6 +63,11 @@ const routes = [
     component: MovieDetail
   },
   {
+    path: '/movies/:movies_id/reviews/',
+    name: 'ReviewList',
+    component: ReviewList
+  },
+  {
     path: '/communities/articles/detail/:article_id',
     name: 'ArticleDetail',
     component: ArticleDetail
@@ -75,7 +81,7 @@ const routes = [
     path: '/communities/articles/:article_id/comments/',
     name: 'CommentList',
     component: CommentList
-  }
+  },
 ]
 
 const router = new VueRouter({
