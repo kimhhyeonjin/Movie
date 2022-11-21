@@ -16,6 +16,11 @@ from .serializers import (
 # permission Decorators
 from rest_framework.decorators import permission_classes
 from rest_framework.permissions import IsAuthenticated
+import json
+
+def vote_avg_sort(arr):
+    arr.sort(key=lambda x:x.vote_average, reverse=True)
+    return arr[:10]
 
 # 영화 목록
 @api_view(['GET'])
@@ -85,3 +90,58 @@ def review_detail(request, review_pk):
     elif request.method == 'DELETE':
         review.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+# @api_view(['GET'])
+# @permission_classes([IsAuthenticated])
+# def recommend(request):
+#     user = request.user
+#     like_movies =  user.like_movies.all()
+#     print(like_movies)
+#     prefer = []
+#     for movie in like_movies:
+#         genres = movie.genre_ids.all()
+#         for genre in genres:
+#             if genre.pk not in prefer:
+#                 prefer.append(genre.pk)
+#     # print(prefer)
+#     movies = list(Movie.objects.all().values())
+#     recommend_list = []
+#     for movie in movies:
+#         print(movie)
+
+#     print(movies)
+#     recommend_list = []
+#     for movie in movies:
+#         if movie in like_movies:
+#             continue
+#         genres = movie.genre_ids.all()
+#         # print(movie, genres)
+#         for x in prefer:
+#             for genre in genres:
+#                 # print(x, genre.pk)
+#                 if x == genre.pk and movie not in recommend_list:
+#                     recommend_list.append(movie)
+#     # print(recommend_list, len(recommend_list))
+#     real_recommend = vote_avg_sort(recommend_list)
+#     if not real_recommend:
+#         real_recommend = vote_avg_sort(movies)
+#     context = {
+#         'like_movies':like_movies,
+#         'real_recommend': real_recommend
+#     }
+#     return Response(context)
+
+@api_view(['GET'])
+# @authentication_classes([JSONWebTokenAuthentication])
+# @permission_classes([IsAuthenticated])
+def random(request):
+    movies = Movie.objects.order_by('?')[:200]
+    serializer = MovieDetailSerializer(movies, many=True)
+    return Response(serializer.data, status=status.HTTP_200_OK)
+
+@api_view(['GET'])
+def recommend(request):
+    recommend_list = []
+    like_movies = request.user.like_movies.all()
+    return JsonResponse(like_movies)

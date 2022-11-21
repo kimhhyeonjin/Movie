@@ -15,5 +15,9 @@ urlpatterns = [
     path('<int:movie_pk>/reviews/', views.review_list),
     # 개별 리뷰 정보
     path('reviews/<int:review_pk>/', views.review_detail),
+    # 추천 영화 : 랜덤
+    path('random/', views.random),
+    # 추천 영화 : 좋아요 기반
+    path('recommend/', views.recommend),
 ]
 
