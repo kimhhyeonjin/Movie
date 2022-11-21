@@ -7,6 +7,8 @@ urlpatterns = [
     path('', views.movie_list),
     # 개별 영화 정보
     path('<int:movie_pk>/', views.movie_detail),
+    # 영화 좋아요
+    path('<int:movie_pk>/likes/', views.movie_like),
     # 영화별 리뷰 생성
     path('<int:movie_pk>/create_review/', views.create_review),
     # 영화별 리뷰 목록

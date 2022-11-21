@@ -4,11 +4,10 @@ from django.conf import settings
 
 class Genre(models.Model):
     name = models.CharField(max_length=50)
-    like_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like_genres')
 
 class Movie(models.Model):
     like_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like_movies')
-    genre_ids = models.ManyToManyField(Genre)
+    genres = models.ManyToManyField(Genre)
     
     title = models.CharField(max_length=100)
     release_date = models.DateField()

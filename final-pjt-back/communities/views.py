@@ -2,6 +2,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework import status
 from django.shortcuts import render, redirect, get_list_or_404, get_object_or_404
+from django.http.response import JsonResponse
 from .models import Article, Comment
 from .serializers import (
     ArticleListSerializer,
@@ -53,10 +54,22 @@ def article_like(request, article_pk):
     article = get_object_or_404(Article, pk=article_pk)
     user = request.user
     
-    serializer = ArticleDetailSerializer(article, data=request.data)
-    if serializer.is_valid(raise_exception=True):
-        serializer.save(article=article, user=user)
-    return Response(serializer.data)
+    if article.user_id != user:
+        if article.like_users.filter(pk=user.pk).exists():
+            article.like_users.remove(user)
+            isFollow = False
+        else:
+            article.like_users.add(user)
+            isFollow = True
+        context = {
+            'isFollow' : isFollow,
+            'follow_cnt' : article.like_users.count(),
+        }
+        return JsonResponse(context)
+    # serializer = ArticleDetailSerializer(article, data=request.data)
+    # if serializer.is_valid(raise_exception=True):
+    #     serializer.save(article=article, user=user)
+    # return Response(serializer.data)
 
 @api_view(['GET'])
 def comment_list(request, article_pk):
@@ -69,7 +82,7 @@ def create_comment(request, article_pk):
     article = get_object_or_404(Article, pk=article_pk)
     serializer = CommentDetailSerializer(data = request.data)
     if serializer.is_valid(raise_exception=True):
-        serializer.save(article=article)
+        serializer.save(article=article, user=request.user)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 @api_view(['GET', 'PUT', 'DELETE'])

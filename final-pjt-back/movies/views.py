@@ -10,6 +10,7 @@ from .serializers import (
     MovieListSerializer, 
     MovieDetailSerializer,
     ReviewSerializer,
+    GenreSerializer,
 )
 
 # permission Decorators
@@ -30,6 +31,24 @@ def movie_detail(request, movie_pk):
     serializer = MovieDetailSerializer(movie)
     return Response(serializer.data)
 
+# 영화 좋아요
+@api_view(['POST'])
+def movie_like(request, movie_pk):
+    movie = get_object_or_404(Movie, pk=movie_pk)
+    user = request.user
+
+    if movie.like_users.filter(pk=user.pk).exists():
+        movie.like_users.remove(user)
+        isLike = False
+    else:
+        movie.like_users.add(user)
+        isLike = True
+    context = {
+        'isLike' : isLike,
+        'like_cnt' : movie.like_users.count()
+    }
+    return JsonResponse(context)
+
 # 영화별 리뷰 목록
 @api_view(['GET'])
 def review_list(request, movie_pk):
@@ -42,21 +61,16 @@ def review_list(request, movie_pk):
 # @permission_classes([IsAuthenticated])
 def create_review(request, movie_pk):
     movie = get_object_or_404(Movie, pk=movie_pk)
-    # user = get_user_model()
     serializer = ReviewSerializer(data=request.data)
     if serializer.is_valid(raise_exception=True):
         serializer.save(movie=movie, user=request.user)
-        # serializer.movie = movie
-        # serializer.user = user
-        # serializer.save()
         return JsonResponse(serializer.data, status=status.HTTP_201_CREATED)
 
 # 영화별 리뷰별 조회, 수정, 삭제
 @api_view(['GET', 'PUT', 'DELETE'])
 # @permission_classes([IsAuthenticated])
-def review_detail(request, review_pk, movie_pk):
+def review_detail(request, review_pk):
     review = get_object_or_404(Review, pk=review_pk)
-    movie = get_object_or_404(Movie, pk=movie_pk)
 
     if request.method == 'GET':
         serializer = ReviewSerializer(review)
@@ -70,4 +84,4 @@ def review_detail(request, review_pk, movie_pk):
 
     elif request.delete == 'DELETE':
         review.delete()
-        return Response(statue=status.HTTP_204_NO_CONTENT)
+        return Response(status=status.HTTP_204_NO_CONTENT)
