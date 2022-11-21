@@ -38,7 +38,7 @@ const routes = [
     component: CommunityView
   },
   {
-    path: '/mypage',
+    path: '/mypage/:username',
     name: 'MypageView',
     component: MypageView
   },
@@ -63,7 +63,7 @@ const routes = [
     component: MovieDetail
   },
   {
-    path: '/movies/:movies_id/reviews/',
+    path: '/movies/:movie_id/reviews',
     name: 'ReviewList',
     component: ReviewList
   },
