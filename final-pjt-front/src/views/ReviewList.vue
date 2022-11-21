@@ -40,10 +40,9 @@ export default {
           console.log(response)
           const reviews = response.data
           this.reviews = reviews
+          this.$router.push({ name: 'MovieDetail', params: `{ movie_id: ${this.$route.params.movie_id} }` })
         })
         .catch((error) => {
-          this.reviews = false
-          console.log(this.reviews)
           console.log(error)
         })
     }

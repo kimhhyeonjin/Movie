@@ -14,8 +14,10 @@ export default new Vuex.Store({
   ],
   state: {
     movies: [],
-    token: null,
-    user: [],
+    // token: null,로 하면 App.vue에서 v-if가 적용되지 않음
+    // token: '',로 하면 적용됨
+    token: '',
+    user: '',
   },
   getters: {
     isLogin(state) {
@@ -35,7 +37,8 @@ export default new Vuex.Store({
       console.log(state.user)
     },
     LOGOUT_USER(state) {
-      state.user = []
+      state.user = ''
+      state.token = ''
       console.log(state.user)
     }
   },
@@ -86,23 +89,24 @@ export default new Vuex.Store({
         .then((response) => {
           console.log(response)
           context.commit('SAVE_TOKEN', response.data.key)
+          context.dispatch('getUser', response.data.key)
         })
-        .then(
-          axios({
-            method: 'get',
-            url: `${API_URL}/accounts/user/`,
-            headers: {
-              Authorization: `Token ${context.state.token}`
-            },
-          })
-          .then((response) => {
-            console.log(response)
-            context.commit('GET_USER', response.data)
-          })
-        )
         .catch((error) => {
           console.log(error)
         })
+    },
+    getUser(context, payload) {
+      axios({
+        method: 'get',
+        url: `${API_URL}/accounts/user/`,
+        headers: {
+          Authorization: `Token ${payload}`
+        },
+      })
+      .then((response) => {
+        console.log(response)
+        context.commit('GET_USER', response.data)
+      })
     },
     logOut(context) {
       axios({
