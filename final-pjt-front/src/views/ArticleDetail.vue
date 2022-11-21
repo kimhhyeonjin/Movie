@@ -4,8 +4,8 @@
     <p>작성자 : {{ article.user }}</p>
     <p>제목 : {{ article.title }}</p>
     <p>내용 : {{ article.content }}</p>
-    <p>작성일자 : {{ article.createdAt }}</p>
-    <p>수정일자 : {{ article.updatedAt }}</p>
+    <p>작성일자 : {{ article.created_at }}</p>
+    <p>수정일자 : {{ article.updated_at }}</p>
     <CommentList/>
     <CommentForm/>
   </div>
