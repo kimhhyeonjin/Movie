@@ -7,8 +7,7 @@ from .models import Article, Comment
 from .serializers import (
     ArticleListSerializer,
     ArticleDetailSerializer,
-    CommentListSerializer,
-    CommentDetailSerializer
+    CommentSerializer,
 )
 
 # permission Decorators
@@ -74,13 +73,13 @@ def article_like(request, article_pk):
 @api_view(['GET'])
 def comment_list(request, article_pk):
     comments = get_list_or_404(Comment, article=article_pk)
-    serializer = CommentListSerializer(comments, many=True)
+    serializer = CommentSerializer(comments, many=True)
     return Response(serializer.data)
 
 @api_view(['POST'])
 def create_comment(request, article_pk):
     article = get_object_or_404(Article, pk=article_pk)
-    serializer = CommentDetailSerializer(data = request.data)
+    serializer = CommentSerializer(data = request.data)
     if serializer.is_valid(raise_exception=True):
         serializer.save(article=article, user=request.user)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -90,11 +89,11 @@ def comment_detail(request, comment_pk):
     comment = get_object_or_404(Comment, pk=comment_pk)
 
     if request.method == 'GET':
-        serializer = CommentDetailSerializer(comment)
+        serializer = CommentSerializer(comment)
         return Response(serializer.data)
 
     elif request.method == 'PUT':
-        serializer = CommentDetailSerializer(comment, data=request.data)
+        serializer = CommentSerializer(comment, data=request.data)
         if serializer.is_valid(raise_exception=True):
             serializer.save()
             return Response(serializer.data)

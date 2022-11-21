@@ -16,15 +16,8 @@ class ArticleDetailSerializer(serializers.ModelSerializer):
         fields = '__all__'
         read_only_fields =('user', 'like_users',)
 
-# 게시글 하나에 적힌 댓글 목록
-class CommentListSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Comment
-        fields = ('id', 'content', )
-
-# 댓글에 대한 세부 정보 (내용, 생성일자, 수정일자)
-class CommentDetailSerializer(serializers.ModelSerializer):
+# 게시글 하나에 적힌 댓글 목록 / 댓글에 대한 세부 정보 (내용, 생성일자, 수정일자)
+class CommentSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Comment

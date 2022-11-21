@@ -33,51 +33,17 @@ for i in range(1, num):
         'vote_average',
         'poster_path',
         'backdrop_path',
-        'popularity',
     ]
-    genres = [
-        {"id": 28, "name": "액션"}, 
-        {"id": 12, "name": "모험"}, 
-        {"id": 16, "name": "애니메이션"}, 
-        {"id": 35, "name": "코미디"}, 
-        {"id": 80, "name": "범죄"}, 
-        {"id": 99, "name": "다큐멘터리"}, 
-        {"id": 18, "name": "드라마"}, 
-        {"id": 10751, "name": "가족"}, 
-        {"id": 14, "name": "판타지"}, 
-        {"id": 36, "name": "역사"}, 
-        {"id": 27, "name": "공포"}, 
-        {"id": 10402, "name": "음악"}, 
-        {"id": 9648, "name": "미스테리"}, 
-        {"id": 10749, "name": "로맨스"}, 
-        {"id": 878, "name": "SF"}, 
-        {"id": 10770, "name": "TV영화"}, 
-        {"id": 53, "name": "스릴러"}, 
-        {"id": 10752, "name": "전쟁"}, 
-        {"id": 37, "name": "서부"}
-    ]
-    
+
     # 원하는 데이터를 리스트에 모으기
     for data2 in response_data['results']:
         keys = { "model" : "movies.movie"}
         fields = dict()
-        genre_list = []
         for i in columns:
-            if i == 'genre_ids':
-                for j in range(len(data2[i])):
-                    # print(j)
-                    # print(data2[i][j])
-                    for k in range(len(genres)):
-                        if data2[i][j] == genres[k]['id']:
-                            genre_list.append(genres[k]['name'])
-                fields['genre_list'] = genre_list
-            else:
-                fields[i] = data2[i]
-        # print(genre_list)
+            fields[i] = data2[i]
         print(fields)
         keys['fields'] = fields
         key.append(keys)
-
         
     # print(key)
     # print(len(key))
