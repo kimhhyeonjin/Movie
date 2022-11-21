@@ -12,6 +12,8 @@ class MovieDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = Movie
         fields = '__all__'
+        read_only_fields = ('genre_ids', 'like_users',)
+        
 
 class ReviewSerializer(serializers.ModelSerializer):
 
