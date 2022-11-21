@@ -40,8 +40,9 @@ export default {
       })
         .then((response) => {
           console.log(response)
-          this.$router.push({name: 'CommentList', params: `${this.$route.params.article_id}`})
-        }) 
+          this.$store.dispatch('getCommentList', `${this.$route.params.article_id}`)
+          this.content = null
+        })
         .catch((error) => {
           console.log(error)
         })

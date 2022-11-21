@@ -14,6 +14,10 @@ export default new Vuex.Store({
   ],
   state: {
     movies: [],
+    articles: [],
+    article: [],
+    comments: [],
+    reviews: [],
     // token: null,로 하면 App.vue에서 v-if가 적용되지 않음
     // token: '',로 하면 적용됨
     token: '',
@@ -27,6 +31,18 @@ export default new Vuex.Store({
   mutations: {
     GET_MOVIES(state, movies) {
       state.movies = movies
+    },
+    GET_ARTICLELIST(state, articles) {
+      state.articles = articles
+    },
+    GET_ARTICLEDETAIL(state, article) {
+      state.article = article
+    },
+    GET_COMMENTLIST(state, comments) {
+      state.comments = comments
+    },
+    GET_REVIEWLIST(state, reviews) {
+      state.reviews = reviews
     },
     SAVE_TOKEN(state, token) {
       state.token = token
@@ -54,6 +70,70 @@ export default new Vuex.Store({
         .then((response) => {
           // console.log(response)
           context.commit('GET_MOVIES', response.data)
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    },
+    getArticleList(context) {
+      axios({
+        method: 'get',
+        url: `${API_URL}/communities/articles/`,
+        headers: {
+          Authorization: `Token ${context.state.token}`
+        },
+      })
+        .then((response) => {
+          console.log(response)
+          context.commit('GET_ARTICLELIST', response.data)
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    },
+    getArticleDetail(context, payload) {
+      axios({
+        method: 'get',
+        url: `${API_URL}/communities/articles/${payload}/`,
+        headers: {
+          Authorization: `Token ${context.state.token}`
+        },
+      })
+        .then((response) => {
+          console.log(response)
+          context.commit('GET_ARTICLEDETAIL', response.data)
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    },
+    getCommentList(context, payload) {
+      axios({
+        method: 'get',
+        url: `${API_URL}/communities/articles/${payload}/comments/`,
+        headers: {
+          Authorization: `Token ${context.state.token}`
+        },
+      })
+        .then((response) => {
+          console.log(response)
+          context.commit('GET_COMMENTLIST', response.data)
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    },
+    getReviewList(context, payload) {
+      axios({
+        method: 'get',
+        url: `${API_URL}/movies/${payload}/reviews/`,
+        headers: {
+          Authorization: `Token ${context.state.token}`
+        },
+      })
+        .then((response) => {
+          console.log(response)
+          context.commit('GET_REVIEWLIST', response.data)
         })
         .catch((error) => {
           console.log(error)

@@ -1,14 +1,11 @@
 <template>
   <div>
     <!-- <h4>ReviewListItem</h4> -->
-    <span>
-      {{ review }}
-      {{ review.content }}
-      <div v-if="is_user">
-        <button @click.prevent="updateReview">수정</button>
-        <button @click.prevent="deleteReview">삭제</button>
-      </div>
-    </span>
+    <p>{{ review.content }}</p>
+    <div v-if="is_user">
+      <button @click.prevent="updateReview">수정</button>
+      <button @click.prevent="deleteReview">삭제</button>
+    </div>
   </div>
 </template>
 
@@ -26,6 +23,7 @@ export default {
   },
   props: {
     review: Object,
+    movie_id: Number,
   },
   created() {
     this.isUser()
@@ -64,6 +62,7 @@ export default {
       })
         .then((response) => {
           console.log(response)
+          this.$store.dispatch('getReviewList', `${this.movie_id}`)
         })
         .catch((error) => {
           console.log(error)

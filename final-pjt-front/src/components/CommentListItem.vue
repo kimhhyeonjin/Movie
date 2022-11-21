@@ -23,6 +23,7 @@ export default {
   },
   props: {
     comment: Object,
+    article_id: Number,
   },
   created() {
     this.isUser()
@@ -61,6 +62,7 @@ export default {
       })
         .then((response) => {
           console.log(response)
+          this.$store.dispatch('getCommentList', `${this.article_id}`)
         })
         .catch((error) => {
           console.log(error)

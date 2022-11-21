@@ -12,40 +12,41 @@
 </template>
 
 <script>
-import axios from 'axios'
+// import axios from 'axios'
 import ArticleList from '@/components/ArticleList'
 
-const API_URL = 'http://127.0.0.1:8000'
+// const API_URL = 'http://127.0.0.1:8000'
 
 export default {
   name: 'CommunityView',
-  data() {
-    return {
-      articles: [],
-    }
-  },
   components: {
     ArticleList,
+  },
+  computed: {
+    articles() {
+      return this.$store.state.articles
+    }
   },
   methods: {
     goToCreate() {
       this.$router.push({name: 'ArticleForm'})
     },
     getArticleList() {
-      axios({
-        method: 'get',
-        url: `${API_URL}/communities/articles/`,
-        headers: {
-          Authorization: `Token ${this.$store.state.token}`
-        }
-      })
-        .then((response) => {
-          console.log(response)
-          this.articles = response.data
-        })
-        .catch((error) => {
-          console.log(error)
-        })
+      this.$store.dispatch('getArticleList')
+      // axios({
+      //   method: 'get',
+      //   url: `${API_URL}/communities/articles/`,
+      //   headers: {
+      //     Authorization: `Token ${this.$store.state.token}`
+      //   }
+      // })
+      //   .then((response) => {
+      //     console.log(response)
+      //     this.articles = response.data
+      //   })
+      //   .catch((error) => {
+      //     console.log(error)
+      //   })
     }
   },
   created() {

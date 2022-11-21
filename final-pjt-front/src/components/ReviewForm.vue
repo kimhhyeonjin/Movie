@@ -1,7 +1,7 @@
 <template>
   <div>
     <h4>ReviewForm</h4>
-    <form @submit.prevent="createMovieDetail">
+    <form @submit.prevent="createReview">
       <label for="content">내용 : </label>
       <textarea id="content" cols="30" rows="10" v-model="content"></textarea><br>
       <input type="submit" id="submit">
@@ -22,7 +22,7 @@ export default {
     }
   },
   methods: {
-    createMovieDetail() {
+    createReview() {
       const content = this.content
       if (!content) {
         alert('내용을 입력해주세요')
@@ -40,7 +40,8 @@ export default {
       })
         .then((response) => {
           console.log(response)
-          this.$router.push({ name: 'ReviewList', params: `{ movie_id: ${this.$route.params.movie_id} }` })
+          this.$store.dispatch('getReviewList', `${this.$route.params.movie_id}`)
+          this.content = null
         })
         .catch((error) => {
           console.log(error)
