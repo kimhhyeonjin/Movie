@@ -19,6 +19,11 @@
       width="180px"
       height="260px"
     >
+    <br>
+    <form @submit.prevent="likeMovie">
+      <input v-show="isLike" type="submit" value="좋아요 취소">
+      <input v-show="!isLike" type="submit" value="좋아요">
+    </form>
     <ReviewList/>
     <ReviewForm/>
   </div>
@@ -40,6 +45,7 @@ export default {
   data() {
     return {
       movie: null,
+      isLike: null,
     }
   },
   created() {
@@ -49,11 +55,27 @@ export default {
     getMovieDetail() {
       axios({
         method: 'get',
-        url: `${API_URL}/movies/${this.$route.params.movie_id}`
+        url: `${API_URL}/movies/${this.$route.params.movie_id}/`
       })
         .then((response) => {
           console.log(response)
           this.movie = response.data
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    },
+    likeMovie() {
+      axios({
+        method: 'post',
+        url: `${API_URL}/movies/${this.$route.params.movie_id}/likes/`,
+        headers: {
+          Authorization: `Token ${this.$store.state.token}`
+        },
+      })
+        .then((response) => {
+          console.log(response)
+          this.isLike = response.data.isLike
         })
         .catch((error) => {
           console.log(error)
