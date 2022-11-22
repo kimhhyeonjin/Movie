@@ -1,38 +1,16 @@
 <template>
   <div>
     <h1>Mypage</h1>
-    <div class="container">
-      <div class="image-upload" id="image-upload">
-        <form method="post" enctype="multipart/form-data">
-          <div class="button">
-            <label for="chooseFile">
-                
-            </label>
-          </div>
-          <input type="file" id="chooseFile" name="chooseFile" accept="image/*" onChange="LoadFile(input)">
-        </form>
-
-        <div class="fileContainer">
-          <div class="fileInput">
-            <p>FILE NAME: </p>
-            <p id="fileName"></p>
-          </div>
-          <div class="buttonContainer">
-            <div class="submitButton" id="submitButton">SUBMIT</div>
-          </div>
-        </div>
-      </div>
-      
-      <div class="image-show" id="image-show"></div>
-    </div>
-
-    <!-- <script src="index.js"></script> -->
     <br>
-    <button @click="isFollow">Follow</button>
+    <!-- 자기자신을 팔로우하지 않도록 v-show 이용 -->
+    <form @submit.prevent="followUser">
+      <input v-show="isFollow" type="submit" value="팔로우 취소">
+      <input v-show="!isFollow" type="submit" value="팔로우">
+    </form>
     <br>
     <br>
     <h5>name : {{ username }}</h5>
-    <br>
+    <br>{{ user_id }}
     <h5>내가 좋아요한 영화</h5>
     <br>
     <h5>팔로잉 : </h5>
@@ -42,66 +20,44 @@
 </template>
 
 <script>
-// import axios from 'axios'
+import axios from 'axios'
 
-// const API_URL = 'http://127.0.0.1:8000'
+const API_URL = 'http://127.0.0.1:8000'
 
 export default {
-  name: 'MypageView',  data() {
+  name: 'MypageView',  
+  data() {
     return {
-      username: this.$route.params.username
+      username: this.$route.params.username,
+      user_id: this.$route.params.user_id,
+      isFollow: null,
     }
   },
-
   methods: {
-    LoadFile(input) {
-      var file = input.files[0];
-
-      var name = document.getElementById('filename');
-      name.textContent = file.name;
-
-      var newImage = document.createElement('img');
-      newImage.setAttribute('class', 'img');
-
-      newImage.src = URL.createObjectURL(file);
-
-      newImage.style.width = '40%';
-      newImage.style.height = '40%';
-      newImage.style.visibility = 'hidden';
-      newImage.style.objectFit = 'contain';
-
-      var container = document.getElementById('image-show');
-      container.appendChild(newImage);
-      
-      var submit = document.getElementById('submitButton');
-      submit.onclick = showImage;     //Submit 버튼 클릭시 이미지 보여주기
-
-        function showImage() {
-          var newImage = document.getElementById('image-show').lastElementChild;
-          
-          //이미지는 화면에 나타나고
-          newImage.style.visibility = "visible";
-          
-          //이미지 업로드 버튼은 숨겨진다
-          document.getElementById('image-upload').style.visibility = 'hidden';
-
-          document.getElementById('fileName').textContent = null;     //기존 파일 이름 지우기
-        }
-    },
-    isFollow() {
-      // axios({
-      //   method: 'post',
-      //   url : `${API_URL}//`,
-      // })
+    followUser() {
+      axios({
+        method: 'post',
+        url: `${API_URL}/accounts/like/${this.$route.params.username}/follow/`,
+        headers: {
+          Authorization: `Token ${this.$store.state.token}`
+        },
+      })
+        .then((response) => {
+          console.log(response)
+          this.isFollow = response.data.isFollow
+        })
+        .catch((error) => {
+          console.log(error)
+        })
     }
   },
-
   beforeRouteUpdate(to, from, next){
     this.username = to.params.username
     next()
   },
 }
 </script>
+
 <style>
 
 html {
