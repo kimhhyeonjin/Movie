@@ -4,8 +4,8 @@
     <p @click="goArticleDetail(article.id)">
       <b>{{ article.title }}</b>
     </p>
-    <p @click="goToProfile(username)">
-      {{ article.user }}
+    <p @click="goToProfile(userDetail)">
+      {{ userDetail }}
     </p>
   </div>
 </template>
@@ -16,6 +16,11 @@ export default {
   props: {
     article: Object,
   },
+  computed: {
+    userDetail() {
+      return this.$store.state.userDetail
+    }
+  },
   methods: {
     goArticleDetail(article_id) {
       this.$router.push({name: 'ArticleDetail', params: {article_id}})
@@ -23,7 +28,13 @@ export default {
     goToProfile(username) {
       this.$router.push({name: 'MypageView', params: {username}})
     },
+    getUserDetail() {
+      this.$store.dispatch('getUserDetail', this.article.user )
+    }
   },
+  created() {
+    this.getUserDetail()
+  }
 }
 </script>
 

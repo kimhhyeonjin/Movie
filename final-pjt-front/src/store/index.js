@@ -21,11 +21,11 @@ export default new Vuex.Store({
     article: [],
     comments: [],
     reviews: [],
-    userDetail: [],
     // token: null,로 하면 App.vue에서 v-if가 적용되지 않음
     // token: '',로 하면 적용됨
     token: '',
     user: '',
+    userDetail: '',
   },
   getters: {
     isLogin(state) {
@@ -67,15 +67,18 @@ export default new Vuex.Store({
       state.token = token
       router.push({ name: 'MovieView' })
     },
-    GET_USER(state, user) {
-      state.user = user
-      console.log(state.user)
-    },
     LOGOUT_USER(state) {
       state.user = ''
       state.token = ''
       console.log(state.user)
-    }
+    },
+    GET_USER(state, user) {
+      state.user = user
+      console.log(state.user)
+    },
+    GET_USERDETAIL(state, userDetail) {
+      state.userDetail = userDetail
+    },
   },
   actions: {
     getMovies(context) {
@@ -244,19 +247,6 @@ export default new Vuex.Store({
           console.log(error)
         })
     },
-    getUser(context, payload) {
-      axios({
-        method: 'get',
-        url: `${API_URL}/accounts/user/`,
-        headers: {
-          Authorization: `Token ${payload}`
-        },
-      })
-      .then((response) => {
-        console.log(response)
-        context.commit('GET_USER', response.data)
-      })
-    },
     logOut(context) {
       axios({
         method: 'post',
@@ -273,6 +263,19 @@ export default new Vuex.Store({
           console.log(error)
         })
     },
+    getUser(context, payload) {
+      axios({
+        method: 'get',
+        url: `${API_URL}/accounts/user/`,
+        headers: {
+          Authorization: `Token ${payload}`
+        },
+      })
+      .then((response) => {
+        console.log(response)
+        context.commit('GET_USER', response.data)
+      })
+    },
     getUserDetail(context, payload) {
       axios({
         method: 'get',
@@ -283,6 +286,7 @@ export default new Vuex.Store({
       })
         .then((response) => {
           console.log(response)
+          context.commit('GET_USERDETAIL', response.data.username)
         })
         .catch((error) => {
           console.log(error)
