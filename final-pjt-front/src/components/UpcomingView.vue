@@ -19,8 +19,11 @@ export default {
   },
   computed: {
     movies() {
-      return this.$store.state.movies
+      return this.$store.state.upcomingMovies
     }
+  },
+  created() {
+    this.$store.dispatch('getUpcomingMovies')
   }
 }
 </script>
