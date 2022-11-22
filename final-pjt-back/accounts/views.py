@@ -5,6 +5,7 @@ from rest_framework.decorators import api_view
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST, require_http_methods
 from django.http import JsonResponse
+from .serializers import UserSerializer
 # from django.views.decorators.csrf import csrf_exempt
 # from django.utils.decorators import method_decorator
 
@@ -21,8 +22,8 @@ def profile(request, username):
 @api_view(['POST'])
 # @method_decorator(csrf_exempt, name='dispatch')
 def follow(request, user_pk):
-    person = get_object_or_404(get_user_model(), pk=user_pk)
-    user = request.user
+    person = get_object_or_404(get_user_model(), pk=user_pk)  # 팔로우 신청하려고 하는 사람
+    user = request.user                                       # 요청하는 사람
 
     if person != user:
         if person.followings.filter(pk=user.pk).exists():
@@ -37,3 +38,10 @@ def follow(request, user_pk):
         'followings_cnt' : followings_cnt,
     }
     return Response(context)
+
+@api_view(['GET'])
+def username(request, username):
+    user = get_object_or_404(get_user_model(), username=username)
+    serializer = UserSerializer(user)
+    return Response(serializer.data)
+
