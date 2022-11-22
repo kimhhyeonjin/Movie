@@ -276,22 +276,6 @@ export default new Vuex.Store({
         context.commit('GET_USER', response.data)
       })
     },
-    getUserDetail(context, payload) {
-      axios({
-        method: 'get',
-        url: `${API_URL}/movies/userdetail/${payload}`,
-        headers: {
-          Authorization: `Token ${context.state.token}`
-        }
-      })
-        .then((response) => {
-          console.log(response)
-          context.commit('GET_USERDETAIL', response.data.username)
-        })
-        .catch((error) => {
-          console.log(error)
-        })
-    }
   },
   modules: {
   }

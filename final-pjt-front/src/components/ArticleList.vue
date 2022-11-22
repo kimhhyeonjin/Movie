@@ -11,14 +11,18 @@
 </template>
 
 <script>
+import axios from 'axios'
+
+const API_URL = 'http://127.0.0.1:8000'
+
 export default {
   name: 'ArticleList',
   props: {
     article: Object,
   },
-  computed: {
-    userDetail() {
-      return this.$store.state.userDetail
+  data() {
+    return {
+      userDetail: null,
     }
   },
   methods: {
@@ -29,12 +33,25 @@ export default {
       this.$router.push({name: 'MypageView', params: {username}})
     },
     getUserDetail() {
-      this.$store.dispatch('getUserDetail', this.article.user )
+      axios({
+        method: 'get',
+        url: `${API_URL}/movies/userdetail/${this.article.user}`,
+        headers: {
+          Authorization: `Token ${this.$store.state.token}`
+        }
+      })
+        .then((response) => {
+          console.log(response)
+          this.userDetail = response.data.username
+        })
+        .catch((error) => {
+          console.log(error)
+        })
     }
   },
   created() {
     this.getUserDetail()
-  }
+  },
 }
 </script>
 
