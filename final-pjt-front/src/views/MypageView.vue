@@ -10,7 +10,7 @@
     <br>
     <br>
     <h5>name : {{ username }}</h5>
-    <br>{{ user_id }}
+    <br>
     <h5>내가 좋아요한 영화</h5>
     <br>
     <h5>팔로잉 : </h5>
@@ -29,7 +29,6 @@ export default {
   data() {
     return {
       username: this.$route.params.username,
-      user_id: this.$route.params.user_id,
       isFollow: null,
     }
   },

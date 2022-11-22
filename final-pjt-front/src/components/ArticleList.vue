@@ -4,9 +4,7 @@
     <p @click="goArticleDetail(article.id)">
       <b>{{ article.title }}</b>
     </p>
-    <p @click="goToProfile(userDetail)">
-      {{ userDetail }}
-    </p>
+    <p>{{ userDetail }}</p>
   </div>
 </template>
 
@@ -28,9 +26,6 @@ export default {
   methods: {
     goArticleDetail(article_id) {
       this.$router.push({name: 'ArticleDetail', params: {article_id}})
-    },
-    goToProfile(username) {
-      this.$router.push({name: 'MypageView', params: {username}})
     },
     getUserDetail() {
       axios({

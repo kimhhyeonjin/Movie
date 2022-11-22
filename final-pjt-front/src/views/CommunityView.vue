@@ -12,10 +12,7 @@
 </template>
 
 <script>
-// import axios from 'axios'
 import ArticleList from '@/components/ArticleList'
-
-// const API_URL = 'http://127.0.0.1:8000'
 
 export default {
   name: 'CommunityView',
@@ -33,20 +30,6 @@ export default {
     },
     getArticleList() {
       this.$store.dispatch('getArticleList')
-      // axios({
-      //   method: 'get',
-      //   url: `${API_URL}/communities/articles/`,
-      //   headers: {
-      //     Authorization: `Token ${this.$store.state.token}`
-      //   }
-      // })
-      //   .then((response) => {
-      //     console.log(response)
-      //     this.articles = response.data
-      //   })
-      //   .catch((error) => {
-      //     console.log(error)
-      //   })
     }
   },
   created() {
