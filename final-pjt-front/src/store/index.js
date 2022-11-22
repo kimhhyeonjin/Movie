@@ -71,6 +71,7 @@ export default new Vuex.Store({
       state.user = ''
       state.token = ''
       console.log(state.user)
+      router.push({ name: 'LoginView' })
     },
     GET_USER(state, user) {
       state.user = user

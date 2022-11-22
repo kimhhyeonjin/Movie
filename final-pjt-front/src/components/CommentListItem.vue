@@ -3,7 +3,6 @@
     <!-- <h3>CommentListItem</h3> -->
     <p>{{ comment.content }}</p>
     <div v-if="is_user">
-      <button @click.prevent="updateComment">수정</button>
       <button @click.prevent="deleteComment">삭제</button>
     </div>
   </div>
@@ -33,24 +32,6 @@ export default {
       if (this.comment.user === this.$store.state.user.pk) {
         this.is_user = true
       }
-    },
-    updateComment() {
-      axios({
-        method: 'put',
-        url: `${API_URL}/communities/comments/${this.comment.id}`,
-        data: {
-          content: this.comment.content
-        },
-        headers: {
-          Authorization: `Token ${this.$store.state.token}`
-        },
-      })
-        .then((response) => {
-          console.log(response)
-        })
-        .catch((error) => {
-          console.log(error)
-        })
     },
     deleteComment() {
       axios({

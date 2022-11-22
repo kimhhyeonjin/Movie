@@ -7,8 +7,8 @@
     <p>작성일자 : {{ article.created_at }}</p>
     <p>수정일자 : {{ article.updated_at }}</p>
     <div v-if="is_user">
-      <button @click.prevent="updateArticle">수정</button>
-      <button @click.prevent="deleteArticle">삭제</button>
+      <button @click.prevent="updateArticle(article.id)">수정</button>
+      <button @click.prevent="deleteArticle(article.id)">삭제</button>
     </div>
     <CommentList/>
     <CommentForm/>
@@ -49,6 +49,9 @@ export default {
     },
     getArticleDetail() {
       this.$store.dispatch('getArticleDetail', `${this.$route.params.article_id}`)
+    },
+    updateArticle() {
+      this.$router.push({name: 'ArticleUpdateForm', params: `${this.$route.params.article_id}`})
     },
     deleteArticle() {
       axios({

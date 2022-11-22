@@ -3,7 +3,6 @@
     <!-- <h4>ReviewListItem</h4> -->
     <p>{{ review.content }}</p>
     <div v-if="is_user">
-      <button @click.prevent="updateReview">수정</button>
       <button @click.prevent="deleteReview">삭제</button>
     </div>
   </div>
@@ -33,24 +32,6 @@ export default {
       if (this.review.user === this.$store.state.user.pk) {
         this.is_user = true
       }
-    },
-    updateReview() {
-      axios({
-        method: 'put',
-        url: `${API_URL}/movies/reviews/${this.review.id}`,
-        data: {
-          content: this.review.content
-        },
-        headers: {
-          Authorization: `Token ${this.$store.state.token}`
-        },
-      })
-        .then((response) => {
-          console.log(response)
-        })
-        .catch((error) => {
-          console.log(error)
-        })
     },
     deleteReview() {
       axios({

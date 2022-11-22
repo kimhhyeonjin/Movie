@@ -11,6 +11,7 @@ import LogoutView from '@/views/LogoutView'
 import MovieDetail from '@/views/MovieDetail'
 import ArticleDetail from '@/views/ArticleDetail'
 import ArticleForm from '@/views/ArticleForm'
+import ArticleUpdateForm from '@/views/ArticleUpdateForm'
 import CommentList from '@/views/CommentList'
 import ReviewList from '@/views/ReviewList'
 
@@ -76,6 +77,11 @@ const routes = [
     path: '/communities/articles/create_comment/',
     name: 'ArticleForm',
     component: ArticleForm
+  },
+  {
+    path: '/communities/articles/update_comment/:article_id',
+    name: 'ArticleUpdateForm',
+    component: ArticleUpdateForm
   },
   {
     path: '/communities/articles/:article_id/comments/',
