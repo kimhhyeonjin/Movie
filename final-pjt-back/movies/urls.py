@@ -25,5 +25,7 @@ urlpatterns = [
     path('random/', views.random),
     # 추천 영화 : 좋아요 기반
     path('recommend/', views.recommend),
+    # 유저 정보
+    path('userdetail/<int:user_pk>/', views.userdetail),
 ]
 

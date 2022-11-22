@@ -21,6 +21,7 @@ export default new Vuex.Store({
     article: [],
     comments: [],
     reviews: [],
+    userDetail: [],
     // token: null,로 하면 App.vue에서 v-if가 적용되지 않음
     // token: '',로 하면 적용됨
     token: '',
@@ -272,6 +273,21 @@ export default new Vuex.Store({
           console.log(error)
         })
     },
+    getUserDetail(context, payload) {
+      axios({
+        method: 'get',
+        url: `${API_URL}/movies/userdetail/${payload}`,
+        headers: {
+          Authorization: `Token ${context.state.token}`
+        }
+      })
+        .then((response) => {
+          console.log(response)
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    }
   },
   modules: {
   }

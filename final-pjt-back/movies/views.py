@@ -11,6 +11,7 @@ from .serializers import (
     MovieDetailSerializer,
     ReviewSerializer,
     GenreSerializer,
+    UserDetailSerializer,
 )
 
 # permission Decorators
@@ -166,3 +167,9 @@ def recommend(request):
     recommend_list = []
     like_movies = request.user.like_movies.all()
     return JsonResponse(like_movies)
+
+@api_view(['GET'])
+def userdetail(request, user_pk):
+    user = get_object_or_404(get_user_model(), pk=user_pk)
+    serializer = UserDetailSerializer(user)
+    return Response(serializer.data)
