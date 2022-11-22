@@ -41,8 +41,14 @@ export default new Vuex.Store({
     GET_COMMENTLIST(state, comments) {
       state.comments = comments
     },
+    NO_COMMENTLIST(state) {
+      state.comments = []
+    },
     GET_REVIEWLIST(state, reviews) {
       state.reviews = reviews
+    },
+    NO_REVIEWLIST(state) {
+      state.reviews = []
     },
     SAVE_TOKEN(state, token) {
       state.token = token
@@ -121,6 +127,7 @@ export default new Vuex.Store({
         })
         .catch((error) => {
           console.log(error)
+          context.commit('NO_COMMENTLIST')
         })
     },
     getReviewList(context, payload) {
@@ -137,6 +144,7 @@ export default new Vuex.Store({
         })
         .catch((error) => {
           console.log(error)
+          context.commit('NO_REVIEWLIST')
         })
     },
     signUp(context, payload) {
