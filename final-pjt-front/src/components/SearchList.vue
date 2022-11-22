@@ -1,17 +1,15 @@
 <template>
   <div>
-    <h2>SearchList</h2>
-    <SearchListItem/>
+    <!-- <h2>SearchList</h2> -->
+    <p>{{ result.title }}</p>
   </div>
 </template>
 
 <script>
-import SearchListItem from '@/components/SearchListItem'
-
 export default {
   name: 'SearchList',
-  components: {
-    SearchListItem,
+  props: {
+    result: Object,
   }
 }
 </script>

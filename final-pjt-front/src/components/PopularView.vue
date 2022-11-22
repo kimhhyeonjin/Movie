@@ -19,8 +19,11 @@ export default {
   },
   computed: {
     movies() {
-      return this.$store.state.movies
+      return this.$store.state.popularityMovies
     }
+  },
+  created() {
+    this.$store.dispatch('getPopularMovies')
   }
 }
 </script>

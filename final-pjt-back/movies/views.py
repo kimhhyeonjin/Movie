@@ -29,7 +29,28 @@ def movie_list(request):
     serializer = MovieListSerializer(movies, many=True)
     return Response(serializer.data)
 
-# 영화 세부 정보
+# 평점 순 영화
+@api_view(['GET'])
+def top_rated(request):
+    rated_movies = Movie.objects.all().order_by('-vote_average')[:30]
+    serializer = MovieListSerializer(rated_movies, many=True)
+    return Response(serializer.data)
+
+# 인기 순 영화
+@api_view(['GET'])
+def popularity(request):
+    rated_movies = Movie.objects.all().order_by('-popularity')[:30]
+    serializer = MovieListSerializer(rated_movies, many=True)
+    return Response(serializer.data)
+
+# 최근 개봉 영화
+@api_view(['GET'])
+def upcoming(request):
+    rated_movies = Movie.objects.all().order_by('-release_date')[:30]
+    serializer = MovieListSerializer(rated_movies, many=True)
+    return Response(serializer.data)
+
+# 영화 세부 정보 
 @api_view(['GET'])
 def movie_detail(request, movie_pk):
     movie = get_object_or_404(Movie, pk=movie_pk)

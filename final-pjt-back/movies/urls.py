@@ -5,6 +5,12 @@ from . import views
 urlpatterns = [
     # 전체 영화 리스트 
     path('', views.movie_list),
+    # 평점 순 영화 리스트
+    path('top-rated/', views.top_rated),
+    # 인기 순 영화 리스트
+    path('popularity/', views.popularity),
+    # 최근 개봉 및 예정 영화 리스트
+    path('upcoming/', views.upcoming),
     # 개별 영화 정보
     path('<int:movie_pk>/', views.movie_detail),
     # 영화 좋아요

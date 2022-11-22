@@ -14,6 +14,9 @@ export default new Vuex.Store({
   ],
   state: {
     movies: [],
+    popularityMovies: [],
+    upcomingMovies: [],
+    topRatedMovies: [],
     articles: [],
     article: [],
     comments: [],
@@ -31,6 +34,15 @@ export default new Vuex.Store({
   mutations: {
     GET_MOVIES(state, movies) {
       state.movies = movies
+    },
+    GET_UPCOMING_MOVIES(state, movies) {
+      state.upcomingMovies = movies
+    },
+    GET_TOP_RATED_MOVIES(state, movies) {
+      state.topRatedMovies = movies
+    },
+    GET_POPULARITY_MOVIES(state, movies) {
+      state.popularityMovies = movies
     },
     GET_ARTICLELIST(state, articles) {
       state.articles = articles
@@ -70,6 +82,54 @@ export default new Vuex.Store({
         .then((response) => {
           // console.log(response)
           context.commit('GET_MOVIES', response.data)
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    },
+    getUpcomingMovies(context) {
+      axios({
+        method: 'get',
+        url: `${API_URL}/movies/upcoming/`,
+        headers: {
+          Authorization: `Token ${context.state.token}`
+        },
+      })
+        .then((response) => {
+          // console.log(response)
+          context.commit('GET_UPCOMING_MOVIES', response.data)
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    },
+    getTopRatedMovies(context) {
+      axios({
+        method: 'get',
+        url: `${API_URL}/movies/top-rated/`,
+        headers: {
+          Authorization: `Token ${context.state.token}`
+        },
+      })
+        .then((response) => {
+          // console.log(response)
+          context.commit('GET_TOP_RATED_MOVIES', response.data)
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    },
+    getPopularMovies(context) {
+      axios({
+        method: 'get',
+        url: `${API_URL}/movies/popularity/`,
+        headers: {
+          Authorization: `Token ${context.state.token}`
+        },
+      })
+        .then((response) => {
+          // console.log(response)
+          context.commit('GET_POPULARITY_MOVIES', response.data)
         })
         .catch((error) => {
           console.log(error)
