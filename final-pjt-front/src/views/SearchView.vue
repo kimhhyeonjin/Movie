@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>영화 검색</h1>
+    <h1>🔍영화 검색</h1>
     <br>
     <SearchForm
       @get-keyword="searchMovie"

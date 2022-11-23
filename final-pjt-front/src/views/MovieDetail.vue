@@ -2,16 +2,16 @@
   <div>
     <br>
     <!-- <div class="image-box" style="opacity: 0.3;"> -->
-    <div class="square">
+    <!-- <div class="square">
       <img
       :src="`https://image.tmdb.org/t/p/original${ movie?.backdrop_path }`"
       alt="movie_backdrop"
       width="100%"
       height="100%"
       >
-    </div>
+    </div> -->
     <br>
-    <h1>{{ movie?.title }}</h1>
+    <h1>🎬 {{ movie?.title }}</h1>
     <br>
     <div>
       <img
@@ -25,10 +25,10 @@
     <br>
     <!-- <div id="movieinfo"> -->
     <div class="container">
-      <p>개봉일: {{ movie?.release_date }}</p>
-      <p id="overview">줄거리: {{ movie?.overview }}</p>
-      <p>평점: {{ movie?.vote_average }}</p>
-      <p>popularity: {{ movie?.popularity }}</p>
+      <h5>개봉일: {{ movie?.release_date }}</h5>
+      <h5 id="overview">줄거리: {{ movie?.overview }}</h5>
+      <h5>평점: {{ movie?.vote_average }}</h5>
+      <h5>popularity: {{ movie?.popularity }}</h5>
     </div>
     <br>
     <!-- <img

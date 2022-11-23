@@ -1,6 +1,7 @@
 <template>
   <div>
-    <h3>ArticleDetail</h3>
+    <h2>📋게시글 세부 정보</h2>
+    <br>
     <p>작성자 : 
       <span @click="goToProfile(article.username)">
         {{ article.username }}
@@ -11,15 +12,15 @@
     <p>작성일자 : {{ article.created_at }}</p>
     <p>수정일자 : {{ article.updated_at }}</p>
     <div v-if="is_user">
-      <button @click.prevent="updateArticle(article.id)">수정</button>
-      <button @click.prevent="deleteArticle(article.id)">삭제</button>
+      <button @click.prevent="updateArticle(article.id)" style="background-color: skyblue">수정</button>
+      <button @click.prevent="deleteArticle(article.id)" style="background-color: skyblue">삭제</button>
     </div>
     <br>
     <CommentList/>
     <CommentForm/>
     <br>
     <form @submit.prevent="backToCommunity">
-      <input type="submit" value="목록">
+      <input type="submit" value="목록" style="background-color: skyblue">
     </form>
   </div>
 </template>

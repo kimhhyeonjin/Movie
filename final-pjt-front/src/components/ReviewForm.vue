@@ -2,9 +2,10 @@
   <div>
     <h3>리뷰 작성</h3>
     <form @submit.prevent="createReview">
-      <label for="content">내용 : </label>
+      <label for="content">내용 : &nbsp; </label>
       <textarea id="content" cols="30" rows="1" v-model="content"></textarea><br>
-      <input type="submit" id="submit" value="제출" style="background-color: skyblue ">
+      <!-- <input id="content" cols="10" rows="1" v-model.trim="content" class="form-control" type="text" placeholder="리뷰를 작성해주세요 :)" aria-label="Disabled input example" disabled><br> -->
+      <input type="submit" id="submit" value="제출" style="background-color: skyblue">
     </form>
   </div>
 </template>

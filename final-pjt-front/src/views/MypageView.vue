@@ -1,7 +1,8 @@
 <template>
   <div>
     <!-- <h1>Mypage</h1> -->
-    <h5>{{ username }}의 프로필</h5>
+    <h1> 😘 {{ username }}의 프로필</h1>
+    <br>
     <!-- <br>{{ userdata }} -->
     <div v-show="likeMovies">
       <h5>좋아요한 영화</h5>

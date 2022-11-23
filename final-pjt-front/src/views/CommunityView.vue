@@ -1,12 +1,12 @@
 <template>
   <div>
-    <h1>CommunityView</h1>
+    <h1>🙋커뮤니티</h1>
     <ArticleList
       v-for="article in articles"
       :key="article.id"
       :article="article"
     />
-    <button @click="goToCreate">Create</button>
+    <button @click="goToCreate" style="background-color: skyblue">등록</button>
     
   </div>
 </template>
