@@ -3,8 +3,9 @@
     <!-- <h4>ReviewListItem</h4> -->
     <p>{{ review.content }}</p>
     <div v-if="is_user">
-      <button @click.prevent="deleteReview">삭제</button>
+      <button @click.prevent="deleteReview" style="background-color: skyblue">삭제</button>
     </div>
+    <br>
   </div>
 </template>
 

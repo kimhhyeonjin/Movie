@@ -1,11 +1,15 @@
 <template>
   <div>
-    <h2>TopratedView</h2>
-    <TopratedListView
-      v-for="movie in movies"
-      :key="movie.id"
-      :movie="movie"
-    />
+    <h3> 👉 Top Rated Movie 👈 </h3>
+    <br>
+    <br>
+    <div class="row row-cols-auto row-cols-md-3 g-3 justify-content-center" >
+      <TopratedListView
+        v-for="movie in movies"
+        :key="movie.id"
+        :movie="movie"
+      />
+    </div>
   </div>
 </template>
 

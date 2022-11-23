@@ -1,29 +1,34 @@
 <template>
   <div>
-    <h3>MovieDetail</h3>
-    <p>제목: {{ movie?.title }}</p><br>
-    <p>개봉일: {{ movie?.release_date }}</p><br>
-    <p>줄거리: {{ movie?.overview }}</p><br>
-    <p>평점: {{ movie?.vote_average }}</p><br>
-    <p>popularity: {{ movie?.popularity }}</p><br>
+    <br>
+    <h1>{{ movie?.title }}</h1>
+    <br>
     <img
       :src="`https://image.tmdb.org/t/p/original${ movie?.poster_path }`"
       alt="movie_poster"
-      width="180px"
-      height="260px"
+      width="360px"
+      height="520px"
     >
     <br>
-    <img
+    <br>
+    <div id="movieinfo">
+      <p>개봉일: {{ movie?.release_date }}</p>
+      <p>줄거리: {{ movie?.overview }}</p>
+      <p>평점: {{ movie?.vote_average }}</p>
+      <p>popularity: {{ movie?.popularity }}</p>
+    </div>
+    <br>
+    <!-- <img
       :src="`https://image.tmdb.org/t/p/original${ movie?.backdrop_path }`"
       alt="movie_backdrop"
       width="180px"
       height="260px"
-    >
-    <br>
+    > -->
     <form @submit.prevent="likeMovie">
-      <input v-show="isLike" type="submit" value="좋아요 취소">
-      <input v-show="!isLike" type="submit" value="좋아요">
+      <input v-show="isLike" type="submit" value="좋아요 취소" style="background-color: yellow">
+      <input v-show="!isLike" type="submit" value="좋아요" style="background-color: skyblue ">
     </form>
+    <br>
     <ReviewList/>
     <ReviewForm/>
   </div>
@@ -86,5 +91,8 @@ export default {
 </script>
 
 <style>
-
+#movieinfo {
+  background-color: black;
+  opacity: 0.5;
+}
 </style>

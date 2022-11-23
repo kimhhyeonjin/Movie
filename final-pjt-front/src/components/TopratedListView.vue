@@ -1,16 +1,19 @@
 <template>
-  <div>
+  <div class="card" style="width: 30rem; background-color: black;">
     <!-- <h3>TopratedListView</h3> -->
     <div @click="goMovieDetail(movie.id)">
+      <div class="a">
       <img
         :src="`https://image.tmdb.org/t/p/original${movie.poster_path}`"
         :alt="`${movie.title}_poster`"
         width="180px"
         height="260px"
       >
-      <p>{{ movie.title }}</p>
-      <br>
+      </div>
     </div>
+    <p>{{ movie.title }}</p>
+    <br>
+    <br>
   </div>
 </template>
 
@@ -29,5 +32,10 @@ export default {
 </script>
 
 <style>
-
+.a img {
+  transition: all 0.2s linear;
+}
+.a:hover img {
+  transform: scale(1.4);
+}
 </style>

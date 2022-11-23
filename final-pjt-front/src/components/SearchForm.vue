@@ -1,11 +1,11 @@
 <template>
   <div>
-    <h2>SearchForm</h2>
-      <input 
-        type="text"
-        v-model="keyword"
-      >
-      <button @click="GetKeyword">Search</button>
+    <!-- <h2>SearchForm</h2> -->
+    <input 
+      type="text"
+      v-model="keyword"
+    >
+    <button @click="GetKeyword">Search</button>
   </div>
 </template>
 

@@ -1,15 +1,20 @@
 <template>
   <div>
-    <h1>SearchView</h1>
+    <h1>영화 검색</h1>
+    <br>
     <SearchForm
       @get-keyword="searchMovie"
     />
+    <br>
+    <br>
     <!-- {{ searchResult }} -->
-    <SearchList
-      v-for="result in searchResult"
-      :key="result.id"
-      :result=result
-    />
+    <div class="row row-cols-1 row-cols-md-3 g-3 justify-content-center" >
+      <SearchList
+        v-for="result in searchResult"
+        :key="result.id"
+        :result=result
+      />
+    </div>
   </div>
 </template>
 

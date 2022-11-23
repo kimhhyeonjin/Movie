@@ -1,6 +1,7 @@
 <template>
   <div>
-    <h2>RecommendItem</h2>
+    <!-- <h2>RecommendItem</h2> -->
+    <br>
     <div @click="goMovieDetail(movie.id)">
     <img
       :src="`https://image.tmdb.org/t/p/original${movie.poster_path}`"
@@ -9,8 +10,8 @@
       height="260px"
     >
     </div>
+    <p>{{ movie.title }}</p>
     <br>
-    {{ movie.title }}
   </div>
 </template>
 

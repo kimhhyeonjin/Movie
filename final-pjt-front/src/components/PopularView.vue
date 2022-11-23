@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>PopularView</h2>
+    <h3> 👉 Popular Movie 👈 </h3>
     <PopularListView
       v-for="movie in movies"
       :key="movie.id"

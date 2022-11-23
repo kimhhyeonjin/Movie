@@ -1,14 +1,15 @@
 <template>
   <div>
     <h1>Login Page</h1>
+    <br>
     <form @submit.prevent="logIn">
-      <label for="username">username : </label>
+      <label for="username">username : &nbsp; </label>
       <input type="text" id="username" v-model="username"><br>
-
-      <label for="password"> password : </label>
+      <br>
+      <label for="password"> password : &nbsp; </label>
       <input type="password" id="password" v-model="password"><br>
-
-      <input type="submit" value="logIn">
+      <br>
+      <input type="submit" value="로그인">
     </form>
   </div>
 </template>

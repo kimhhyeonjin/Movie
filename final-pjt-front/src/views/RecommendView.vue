@@ -1,7 +1,9 @@
 <template>
   <div>
-    <h1>RecommendView</h1>
-    {{ user.username }}님이 좋아요 하신 영화를 기반으로 영화 추천
+    <br>
+    <h1>Recommend</h1>
+    <br>
+    <h4> 👉 {{ user.username }}님을 위한 추천 영화 👈 </h4>
     <!-- {{ movies }} -->
     {{ movies.title }}
     <RecommendItem

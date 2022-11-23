@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h3>ReviewList</h3>
+    <h3>리뷰 목록</h3>
     <div v-show="reviews">
       <ReviewListItem
         v-for="review in reviews"

@@ -1,10 +1,10 @@
 <template>
   <div>
     <!-- <h2>ArticleList</h2> -->
+    <br>
     <p @click="goArticleDetail(article.id)">
-      <b>{{ article.title }}</b>
-    </p>
-    <p>{{ userDetail }}</p>
+      <h3>{{ article.title }}</h3>
+      <p>작성자 : {{ userDetail }}</p>
   </div>
 </template>
 

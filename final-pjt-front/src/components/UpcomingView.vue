@@ -1,11 +1,16 @@
 <template>
   <div>
-    <h2>UpcomingView</h2>
-    <UpcomingListView
-      v-for="movie in movies"
-      :key="movie.id"
-      :movie="movie"
-    />
+    <h3> 👉 Upcoming Movie 👈 </h3>
+    <br>
+    <br>
+    <!-- {{ movies }} -->
+    <div class="row row-cols-auto row-cols-md-3 g-3 justify-content-center" >
+      <UpcomingListView
+          v-for="movie in movies"
+          :key="movie.id"
+          :movie="movie"
+      />
+    </div>
   </div>
 </template>
 
@@ -22,13 +27,8 @@ export default {
       return this.$store.state.upcomingMovies
     }
   },
-  methods: {
-    getUpcomingMovies() {
-      this.$store.dispatch('getUpcomingMovies')
-    }
-  },
   created() {
-    this.getUpcomingMovies()
+    this.$store.dispatch('getUpcomingMovies')
   }
 }
 </script>

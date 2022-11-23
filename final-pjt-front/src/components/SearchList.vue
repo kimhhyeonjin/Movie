@@ -1,14 +1,16 @@
 <template>
-  <div>
+  <div class="card" style="width: 30rem; background-color: black;">
     <!-- <h2>SearchList</h2> -->
     <div @click="goMovieDetail(result.id)">
-      <img
-        :src="`https://image.tmdb.org/t/p/original${result.poster_path}`"
-        :alt="`${result.title}_poster`"
-        width="180px"
-        height="260px"
-      >
-      <p>{{ result.title }}</p>
+      <div class="a">
+        <img
+          :src="`https://image.tmdb.org/t/p/original${result.poster_path}`"
+          :alt="`${result.title}_poster`"
+          width="180px"
+          height="260px"
+        >
+      </div>
+      <p class="card-title justify-content-center">{{ result.title }}</p>
       <!-- <p>{{ result.id }}</p> -->
 
     </div>
@@ -30,5 +32,10 @@ export default {
 </script>
 
 <style>
-
+.a img {
+  transition: all 0.2s linear;
+}
+.a:hover img {
+  transform: scale(1.4);
+}
 </style>

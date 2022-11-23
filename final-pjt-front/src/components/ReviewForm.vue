@@ -1,10 +1,10 @@
 <template>
   <div>
-    <h4>ReviewForm</h4>
+    <h3>리뷰 작성</h3>
     <form @submit.prevent="createReview">
       <label for="content">내용 : </label>
-      <textarea id="content" cols="30" rows="10" v-model="content"></textarea><br>
-      <input type="submit" id="submit">
+      <textarea id="content" cols="30" rows="1" v-model="content"></textarea><br>
+      <input type="submit" id="submit" value="제출" style="background-color: skyblue ">
     </form>
   </div>
 </template>
