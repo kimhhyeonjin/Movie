@@ -29,7 +29,7 @@ const routes = [
     component: SearchView
   },
   {
-    path: '/recommend',
+    path: '/recommend/:username',
     name: 'RecommendView',
     component: RecommendView
   },

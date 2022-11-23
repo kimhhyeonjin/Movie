@@ -1,6 +1,7 @@
 <template>
   <div>
     <h1>RecommendView</h1>
+    {{ user }}
     <RecommendItem/>
   </div>
 </template>
@@ -12,6 +13,11 @@ export default {
   name: 'RecommendView',
   components: {
     RecommendItem,
+  },
+  computed: {
+    user() {
+      return this.$store.state.user
+    }
   }
 }
 </script>

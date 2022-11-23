@@ -114,6 +114,55 @@ def review_detail(request, review_pk):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
+@api_view(['GET'])
+# @permission_classes([IsAuthenticated])
+def recommend(request, user_pk):
+    user = get_object_or_404(get_user_model(), pk=user_pk)
+    movies = get_list_or_404(Movie)
+    # print(user)
+    # print(user.id)
+    # print(movies)
+    
+    # 좋아하는 영화 정보 가져오기
+    like_movies = []
+    for movie in movies:
+        for like_user in movie.like_users.all():
+            if user.id == like_user.id:
+                like_movies.append(movie)
+                print(movie.id)
+    print(like_movies)
+    
+    # 좋아하는 영화의 장르 id 가져오기
+    
+    movies = get_list_or_404(Movie)
+    # print(movies)
+    recommend_list = []
+    for movie in movies:
+        if movie in like_movies:
+            continue
+        genre_ids = movie.genre_ids.all()
+        for like_movie in like_movies:
+            print(like_movie)
+            for genre in genre_ids:
+                print(genre)
+                print(genre.id)
+                # if like_movie
+                
+        
+
+    
+        #     genres = movie.genres.all()
+        #     # print(movie, genres)
+        #     for x in prefer:
+        #         for genre in genres:
+        #             # print(x, genre.pk)
+        #             if x == genre.pk and movie not in recommend_list:
+        #                 recommend_list.append(movie)
+        # # print(recommend_list, len(recommend_list))
+    serializer = UserDetailSerializer(user)
+    return Response(serializer.data)
+    
+
 # @api_view(['GET'])
 # @permission_classes([IsAuthenticated])
 # def recommend(request):
@@ -161,12 +210,6 @@ def random(request):
     movies = Movie.objects.order_by('?')[:200]
     serializer = MovieDetailSerializer(movies, many=True)
     return Response(serializer.data, status=status.HTTP_200_OK)
-
-@api_view(['GET'])
-def recommend(request):
-    recommend_list = []
-    like_movies = request.user.like_movies.all()
-    return JsonResponse(like_movies)
 
 @api_view(['GET'])
 def userdetail(request, user_pk):

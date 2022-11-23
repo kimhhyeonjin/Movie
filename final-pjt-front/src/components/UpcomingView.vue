@@ -1,6 +1,7 @@
 <template>
   <div>
     <h2>UpcomingView</h2>
+    {{ movies }}
     <UpcomingListView
       v-for="movie in movies"
       :key="movie.id"

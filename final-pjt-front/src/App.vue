@@ -21,7 +21,7 @@
       <span v-if="token">
         <router-link :to="{ name: 'MovieView' }">메인</router-link> |
         <router-link :to="{ name: 'SearchView' }">검색</router-link> |
-        <router-link :to="{ name: 'RecommendView' }">추천</router-link> |
+        <router-link :to="{ name: 'RecommendView', params: { username: `${user.username}`}  }">추천</router-link> |
         <router-link :to="{ name: 'CommunityView' }">게시판</router-link> |
         <router-link :to="{ name: 'LogoutView' }">로그아웃</router-link> |
         <router-link :to="{ name: 'MypageView', params: { username: `${user.username}`} }">{{ user.username }}</router-link>님 안녕하세요
