@@ -18,10 +18,10 @@
       <br>
     </nav> -->
     <nav class="navbar navbar-expand-lg">
-      <img src="@/assets/movie.png" alt="">
+      <img src="@/assets/movie.png" @click="goToMain">
       &nbsp; &nbsp;
       <span v-if="isLogin">
-        <router-link :to="{ name: 'MovieView' }"> 메인</router-link> 
+        <!-- <router-link :to="{ name: 'MovieView' }"> 메인</router-link>  -->
         <router-link :to="{ name: 'SearchView' }">검색</router-link> 
         <router-link :to="{ name: 'RecommendView', params: { username: `${user.username}`} }">추천</router-link> 
         <router-link :to="{ name: 'CommunityView' }">게시판</router-link> 
@@ -30,7 +30,7 @@
       </span>
 
       <span v-else>
-        <router-link :to="{ name: 'MovieView' }">메인</router-link> 
+        <!-- <router-link :to="{ name: 'MovieView' }">메인</router-link>  -->
         <router-link :to="{ name: 'SearchView' }">검색</router-link> 
         <router-link :to="{ name: 'SignupView' }">회원가입</router-link> 
         <router-link :to="{ name: 'LoginView' }">로그인</router-link>
@@ -50,6 +50,11 @@ export default {
     },
     user() {
       return this.$store.state.user
+    }
+  },
+  methods: {
+    goToMain() {
+      this.$router.push({name: 'MovieView'})
     }
   }
 }
