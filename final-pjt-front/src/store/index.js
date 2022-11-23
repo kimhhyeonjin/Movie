@@ -27,7 +27,7 @@ export default new Vuex.Store({
     isLogin: false,
     token: '',
     user: '',
-    userDetail: '',
+    createUser: '',
   },
   getters: {
     isLogin(state) {
@@ -80,6 +80,7 @@ export default new Vuex.Store({
     LOGOUT_USER(state) {
       state.user = ''
       state.token = ''
+      state.isLogin = false
       console.log(state.user)
       router.push({ name: 'LoginView' })
     },
@@ -87,8 +88,8 @@ export default new Vuex.Store({
       state.user = user
       console.log(state.user)
     },
-    GET_USERDETAIL(state, userDetail) {
-      state.userDetail = userDetail
+    GET_CREATE_USER(state, createUser) {
+      state.createUser = createUser
     },
   },
   actions: {
@@ -273,6 +274,7 @@ export default new Vuex.Store({
         })
         .catch((error) => {
           console.log(error)
+          alert('다시 시도해주세요')
         })
     },
     logOut(context) {
@@ -299,10 +301,29 @@ export default new Vuex.Store({
           Authorization: `Token ${payload}`
         },
       })
-      .then((response) => {
-        console.log(response)
-        context.commit('GET_USER', response.data)
+        .then((response) => {
+          console.log(response)
+          context.commit('GET_USER', response.data)
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    },
+    getCreateUser(context, payload) {
+      axios({
+        method: 'get',
+        url: `${API_URL}/movies/userdetail/${payload}/`,
+        headers: {
+          Authorization: `Token ${context.state.token}`
+        },
       })
+        .then((response) => {
+          console.log(response)
+          context.commit('GET_CREATE_USER', response.data)
+        })
+        .catch((error) => {
+          console.log(error)
+        })
     },
   },
   modules: {

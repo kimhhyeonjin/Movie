@@ -2,15 +2,15 @@
   <div>
     <h3>ArticleDetail</h3>
     <p>작성자 : 
-      <span @click="goToProfile(user_info.username)">
-        {{ user_info.username }}
+      <span @click="goToProfile(article.username)">
+        {{ article.username }}
+        {{ article }}
       </span>
     </p>
     <p>제목 : {{ article.title }}</p>
     <p>내용 : {{ article.content }}</p>
     <p>작성일자 : {{ article.created_at }}</p>
     <p>수정일자 : {{ article.updated_at }}</p>
-    <!-- {{ user_info }} -->
     <div v-if="is_user">
       <button @click.prevent="updateArticle(article.id)">수정</button>
       <button @click.prevent="deleteArticle(article.id)">삭제</button>
@@ -32,10 +32,7 @@ export default {
   name: 'ArticleDetail',
   data() {
     return {
-      comments : null,
-      content: null,
       is_user: false,
-      user_info: null,
     }
   },
   components: {
@@ -45,35 +42,20 @@ export default {
   computed: {
     article() {
       return this.$store.state.article
-    }
+    },
   },
   methods: {
     isUser() {
-      if (this.article.user === this.$store.state.user.pk) {
+      if (this.article.username === this.$store.state.user.username) {
         this.is_user = true
       }
     },
-    getUserDetail() {
-      axios({
-        method: 'get',
-        url: `${API_URL}/movies/userdetail/${this.article.user}`,
-        headers: {
-          Authorization: `Token ${this.$store.state.token}`
-        }
-      })
-        .then((response) => {
-          console.log(response)
-          this.user_info = response.data
-        })
-        .catch((error) => {
-          console.log(error)
-        })
-    },
     goToProfile() {
-      this.$router.push({name: 'MypageView', params: {username: `${this.user_info.username}`}})
+      this.$router.push({name: 'MypageView', params: {username: `${this.article.username}`}})
     },  
     getArticleDetail() {
       this.$store.dispatch('getArticleDetail', `${this.$route.params.article_id}`)
+      this.isUser()
     },
     updateArticle() {
       this.$router.push({name: 'ArticleUpdateForm', params: `${this.$route.params.article_id}`})
@@ -96,10 +78,10 @@ export default {
     },
   },
   created() {
+    // serTimeout()
     this.getArticleDetail()
-    this.getUserDetail()
     this.isUser()
-  }
+  },
 }
 </script>
 

@@ -34,21 +34,21 @@ def movie_list(request):
 # 평점 순 영화
 @api_view(['GET'])
 def top_rated(request):
-    rated_movies = Movie.objects.all().order_by('-vote_average')[:30]
+    rated_movies = Movie.objects.all().order_by('-vote_average')[:12]
     serializer = MovieListSerializer(rated_movies, many=True)
     return Response(serializer.data)
 
 # 인기 순 영화
 @api_view(['GET'])
 def popularity(request):
-    rated_movies = Movie.objects.all().order_by('-popularity')[:30]
+    rated_movies = Movie.objects.all().order_by('-popularity')[:12]
     serializer = MovieListSerializer(rated_movies, many=True)
     return Response(serializer.data)
 
 # 최근 개봉 영화
 @api_view(['GET'])
 def upcoming(request):
-    rated_movies = Movie.objects.all().order_by('-release_date')[:30]
+    rated_movies = Movie.objects.all().order_by('-release_date')[:12]
     serializer = MovieListSerializer(rated_movies, many=True)
     return Response(serializer.data)
 
