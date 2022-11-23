@@ -3,7 +3,7 @@
     <h3> 👉 Top Rated Movie 👈 </h3>
     <br>
     <br>
-    <div class="row row-cols-auto row-cols-md-3 g-3 justify-content-center" >
+    <div class="row row-cols-6 g-3 justify-content-center" >
       <TopratedListView
         v-for="movie in movies"
         :key="movie.id"

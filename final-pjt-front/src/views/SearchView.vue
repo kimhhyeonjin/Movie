@@ -8,7 +8,7 @@
     <br>
     <br>
     <!-- {{ searchResult }} -->
-    <div class="row row-cols-1 row-cols-md-3 g-3 justify-content-center" >
+    <div class="row row-cols-6 g-3 justify-content-center">
       <SearchList
         v-for="result in searchResult"
         :key="result.id"

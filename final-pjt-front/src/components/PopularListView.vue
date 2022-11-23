@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div div class="card" style="width: 18rem; background-color: black;">
     <!-- <h3>PopularListView</h3> -->
     <div @click="goMovieDetail(movie.id)">
       <img
@@ -9,7 +9,8 @@
         height="260px"
       >
     </div>
-    <p>{{ movie.title }}</p>
+    {{ movie.title }}
+    <br>
     <br>
   </div>
 </template>

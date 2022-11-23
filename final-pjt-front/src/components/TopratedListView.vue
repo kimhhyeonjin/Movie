@@ -1,5 +1,5 @@
 <template>
-  <div class="card" style="width: 30rem; background-color: black;">
+  <div class="card" style="width: 18rem; background-color: black;">
     <!-- <h3>TopratedListView</h3> -->
     <div @click="goMovieDetail(movie.id)">
       <div class="a">

@@ -1,5 +1,5 @@
 <template>
-  <div class="card" style="width: 30rem; background-color: black;">
+  <div class="card" style="width: 18rem; background-color: black;">
     <!-- <h2>SearchList</h2> -->
     <div @click="goMovieDetail(result.id)">
       <div class="a">

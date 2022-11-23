@@ -3,7 +3,7 @@
     <h3> 👉 Popular Movie 👈 </h3>
     <br>
     <br>
-    <div class="row row-cols-6 g-3 justify-content-center" >
+    <div class="row row-cols-6 g-3 justify-content-center">
       <PopularListView
         v-for="movie in movies"
         :key="movie.id"
