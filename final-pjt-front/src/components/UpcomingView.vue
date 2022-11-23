@@ -4,7 +4,7 @@
     <br>
     <br>
     <!-- {{ movies }} -->
-    <div class="row row-cols-auto row-cols-md-3 g-3 justify-content-center" >
+    <div class="row row-cols-6 g-3 justify-content-center" >
       <UpcomingListView
           v-for="movie in movies"
           :key="movie.id"
