@@ -14,6 +14,7 @@ export default new Vuex.Store({
   ],
   state: {
     movies: [],
+    recommendedMovies: [],
     popularityMovies: [],
     upcomingMovies: [],
     topRatedMovies: [],
@@ -36,6 +37,9 @@ export default new Vuex.Store({
   mutations: {
     GET_MOVIES(state, movies) {
       state.movies = movies
+    },
+    GET_RECOMMENDED_MOVIES(state, movies) {
+      state.recommendedMovies = movies
     },
     GET_UPCOMING_MOVIES(state, movies) {
       state.upcomingMovies = movies
@@ -99,6 +103,23 @@ export default new Vuex.Store({
         .then((response) => {
           // console.log(response)
           context.commit('GET_MOVIES', response.data)
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    },
+    getRecommendedMovies(context, payload) {
+      console.log(payload)
+      axios({
+        method: 'get',
+        url: `${API_URL}/movies/recommend/${payload}/`,
+        headers: {
+          Authorization: `Token ${context.state.token}`
+        },
+      })
+        .then((response) => {
+          console.log(response)
+          context.commit('GET_RECOMMENDED_MOVIES', response.data)
         })
         .catch((error) => {
           console.log(error)

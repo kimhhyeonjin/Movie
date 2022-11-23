@@ -22,8 +22,13 @@ export default {
       return this.$store.state.popularityMovies
     }
   },
+  methods: {
+    getPoppularMovies() {
+      this.$store.dispatch('getPopularMovies')
+    }
+  },
   created() {
-    this.$store.dispatch('getPopularMovies')
+    this.getPoppularMovies()
   }
 }
 </script>

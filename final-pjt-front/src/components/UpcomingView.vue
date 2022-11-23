@@ -1,7 +1,6 @@
 <template>
   <div>
     <h2>UpcomingView</h2>
-    {{ movies }}
     <UpcomingListView
       v-for="movie in movies"
       :key="movie.id"
@@ -23,8 +22,13 @@ export default {
       return this.$store.state.upcomingMovies
     }
   },
+  methods: {
+    getUpcomingMovies() {
+      this.$store.dispatch('getUpcomingMovies')
+    }
+  },
   created() {
-    this.$store.dispatch('getUpcomingMovies')
+    this.getUpcomingMovies()
   }
 }
 </script>

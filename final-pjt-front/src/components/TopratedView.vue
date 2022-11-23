@@ -22,8 +22,13 @@ export default {
       return this.$store.state.topRatedMovies
     }
   },
+  methods: {
+    getTopRatedMovies() {
+      this.$store.dispatch('getTopRatedMovies')
+    }
+  },
   created() {
-    this.$store.dispatch('getTopRatedMovies')
+    this.getTopRatedMovies()
   }
 }
 </script>
