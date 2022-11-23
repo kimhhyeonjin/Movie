@@ -1,24 +1,23 @@
 <template>
   <div>
-    <h1>Mypage</h1>
+    <!-- <h1>Mypage</h1> -->
+    <h5>{{ username }}의 프로필</h5>
+    <!-- <br>{{ userdata }} -->
+    <div v-show="likeMovies">
+      <h5>좋아요한 영화</h5>
+      <h5>{{ userdata?.like_movies }}</h5>
+    </div>
+    {{ userdata }}
+    <br>
+    <h5>팔로워 : {{ followings }}</h5>
+    <br>
+    <h5>팔로잉 : {{ followers }}</h5>
     <br>
     <!-- 자기자신을 팔로우하지 않도록 v-show 이용 -->
     <form v-show="followMe" @submit.prevent="followUser">
       <input v-show="isFollow" type="submit" value="팔로우 취소">
       <input v-show="!isFollow" type="submit" value="팔로우">
     </form>
-    <br>
-    <br>
-    <h5>name : {{ username }}</h5>
-    <br>{{ userdata }}
-    <br>
-    <br>
-    <h5>내가 좋아요한 영화</h5>
-    <h5>{{ userdata.like_movies }}</h5>
-    <br>
-    <h5>팔로잉 : {{ userdata.followings }}</h5>
-    <br>
-    <h5>팔로워 : {{ userdata.followers }}</h5>
   </div>
 </template>
 
@@ -31,8 +30,11 @@ export default {
   name: 'MypageView',  
   data() {
     return {
-      userdata: null,
       username: this.$route.params.username,
+      userdata: null,
+      likeMovies: false,
+      followers: 0,
+      followings: 0,
       isFollow: false,
       followMe: false,
     }
@@ -48,6 +50,18 @@ export default {
         this.followMe = false
       } else {
         this.followMe = true
+      }
+    },
+    checkIsFollow() {
+      console.log(this.followings)
+      if (this.followings.includes(this.user.pk)) {
+        this.isFollow = true
+        console.log('checkIsFollow함수')
+        console.log(this.isFollow)
+      } else {
+        this.isFollow = false
+        console.log('checkIsFollow함수')
+        console.log(this.isFollow)
       }
     },
     followUser() {
@@ -72,6 +86,16 @@ export default {
             .then((response) => {
               console.log(response)
               this.isFollow = response.data.isFollow
+              console.log('checkIsFollow함수')
+              console.log(this.isFollow)
+              // this.isFollow = !this.isFollow
+              this.followers = response.data.followers
+              // console.log('팔로워')
+              // console.log(this.followers)
+              this.followings = response.data.following
+              // console.log('팔로잉')
+              // console.log(this.followings)
+              this.userData()
             })
             .catch((error) => {
               console.log(error)
@@ -90,9 +114,13 @@ export default {
         },
       })
         .then((response) => {
-          console.log(response)
           this.userdata = response.data
-          console.log(response.data)
+          this.likeMovies = response.data.like_movies
+          this.followers = response.data.followers
+          console.log(this.followers)
+          this.followings = response.data.followings
+          console.log(this.followings)
+          this.checkIsFollow()
         })
         .catch((error) => {
           console.log(error)

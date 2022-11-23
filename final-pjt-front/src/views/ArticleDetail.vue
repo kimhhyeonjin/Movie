@@ -4,7 +4,6 @@
     <p>작성자 : 
       <span @click="goToProfile(article.username)">
         {{ article.username }}
-        {{ article }}
       </span>
     </p>
     <p>제목 : {{ article.title }}</p>
@@ -15,8 +14,13 @@
       <button @click.prevent="updateArticle(article.id)">수정</button>
       <button @click.prevent="deleteArticle(article.id)">삭제</button>
     </div>
+    <br>
     <CommentList/>
     <CommentForm/>
+    <br>
+    <form @submit.prevent="backToCommunity">
+      <input type="submit" value="목록">
+    </form>
   </div>
 </template>
 
@@ -45,17 +49,26 @@ export default {
     },
   },
   methods: {
-    isUser() {
-      if (this.article.username === this.$store.state.user.username) {
-        this.is_user = true
-      }
+    isUser: function() {
+      setTimeout(() => {
+        console.log(this.article.username)
+        if (this.article.username === this.$store.state.user.username) {
+          this.is_user = true
+        }
+        console.log(this.article.username)
+
+      }, 40)
     },
+    // isUser() {
+    //   if (this.article.username === this.$store.state.user.username) {
+    //     this.is_user = true
+    //   }
+    // },
     goToProfile() {
       this.$router.push({name: 'MypageView', params: {username: `${this.article.username}`}})
     },  
     getArticleDetail() {
       this.$store.dispatch('getArticleDetail', `${this.$route.params.article_id}`)
-      this.isUser()
     },
     updateArticle() {
       this.$router.push({name: 'ArticleUpdateForm', params: `${this.$route.params.article_id}`})
@@ -76,11 +89,22 @@ export default {
           console.log(error)
         })
     },
+    backToCommunity() {
+      this.$router.push({name: 'CommunityView'})
+    }
   },
   created() {
-    // serTimeout()
     this.getArticleDetail()
-    this.isUser()
+    // this.$nextTick(function() {
+    //   if (this.article.username === this.$store.state.user.username) {
+    //     this.is_user = true
+    //   }
+    // })
+  },
+  mounted() {
+    this.$nextTick(function() {
+      this.isUser()
+    })
   },
 }
 </script>

@@ -1,10 +1,10 @@
 <template>
   <div>
-    <h3>CommentForm</h3>
+    <!-- <h3>CommentForm</h3> -->
     <form @submit.prevent="createComment">
       <label for="content">내용 : </label>
       <textarea id="content" cols="30" rows="5" v-model.trim="content"></textarea><br>
-      <input type="submit" id="submit">
+      <input type="submit" id="submit" value="등록">
     </form>
   </div>
 </template>

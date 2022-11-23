@@ -1,6 +1,7 @@
 <template>
   <div>
-    <h3>CommentList</h3>
+    <!-- <h3>CommentList</h3> -->
+    <h4>댓글</h4>
     <CommentListItem
       v-for="comment in comments"
       :key="comment.id"
