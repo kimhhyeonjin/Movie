@@ -23,6 +23,7 @@ export default new Vuex.Store({
     reviews: [],
     // token: null,로 하면 App.vue에서 v-if가 적용되지 않음
     // token: '',로 하면 적용됨
+    isLogin: false,
     token: '',
     user: '',
     userDetail: '',
@@ -63,8 +64,13 @@ export default new Vuex.Store({
     NO_REVIEWLIST(state) {
       state.reviews = []
     },
-    SAVE_TOKEN(state, token) {
+    SIGNUP(state, token) {
       state.token = token
+      router.push({ name: 'LoginView' })
+    },
+    LOGIN(state, token) {
+      state.token = token
+      state.isLogin = true
       router.push({ name: 'MovieView' })
     },
     LOGOUT_USER(state) {
@@ -224,7 +230,7 @@ export default new Vuex.Store({
       })
         .then((response) => {
           // console.log(response)
-          context.commit('SAVE_TOKEN', response.data.key)
+          context.commit('SIGNUP', response.data.key)
         })
         .catch((error) => {
           console.log(error)
@@ -241,7 +247,7 @@ export default new Vuex.Store({
       })
         .then((response) => {
           console.log(response)
-          context.commit('SAVE_TOKEN', response.data.key)
+          context.commit('LOGIN', response.data.key)
           context.dispatch('getUser', response.data.key)
         })
         .catch((error) => {

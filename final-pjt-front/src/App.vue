@@ -4,7 +4,7 @@
       <router-link :to="{ name: 'MovieView' }">메인</router-link> |
       <router-link :to="{ name: 'SearchView' }">검색</router-link> |
 
-      <span v-if="token">
+      <span v-if="isLogin">
         <router-link :to="{ name: 'RecommendView' }">추천</router-link> |
         <router-link :to="{ name: 'CommunityView' }">게시판</router-link> |
         <router-link :to="{ name: 'LogoutView' }">로그아웃</router-link> |
@@ -18,7 +18,7 @@
       <br>
     </nav> -->
     <nav>
-      <span v-if="token">
+      <span v-if="isLogin">
         <router-link :to="{ name: 'MovieView' }">메인</router-link> |
         <router-link :to="{ name: 'SearchView' }">검색</router-link> |
         <router-link :to="{ name: 'RecommendView', params: { username: `${user.username}`}  }">추천</router-link> |
@@ -43,8 +43,8 @@
 export default {
   name: 'App',
   computed: {
-    token() {
-      return this.$store.state.token
+    isLogin() {
+      return this.$store.state.isLogin
     },
     user() {
       return this.$store.state.user

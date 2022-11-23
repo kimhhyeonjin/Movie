@@ -18,6 +18,7 @@ from .serializers import (
 from rest_framework.decorators import permission_classes
 from rest_framework.permissions import IsAuthenticated
 import json
+import random
 
 def vote_avg_sort(arr):
     arr.sort(key=lambda x:x.vote_average, reverse=True)
@@ -115,13 +116,10 @@ def review_detail(request, review_pk):
 
 
 @api_view(['GET'])
-# @permission_classes([IsAuthenticated])
+@permission_classes([IsAuthenticated])
 def recommend(request, user_pk):
     user = get_object_or_404(get_user_model(), pk=user_pk)
     movies = get_list_or_404(Movie)
-    # print(user)
-    # print(user.id)
-    # print(movies)
     
     # 좋아하는 영화 정보 가져오기
     like_movies = []
@@ -129,11 +127,18 @@ def recommend(request, user_pk):
         for like_user in movie.like_users.all():
             if user.id == like_user.id:
                 like_movies.append(movie)
-                print(movie.id)
-    print(like_movies)
+    # print(like_movies)
     
     # 좋아하는 영화의 장르 id 가져오기
+    preferences = []
+    for movie in like_movies:
+        genre_ids = movie.genre_ids.all()
+        for genre_id in genre_ids:
+            if genre_id not in preferences:
+                preferences.append(genre_id)
+    # print(preferences)
     
+    # 좋아요 한 장르에서 좋아요하지 않은 영화를 추천
     movies = get_list_or_404(Movie)
     # print(movies)
     recommend_list = []
@@ -141,67 +146,24 @@ def recommend(request, user_pk):
         if movie in like_movies:
             continue
         genre_ids = movie.genre_ids.all()
-        for like_movie in like_movies:
-            print(like_movie)
-            for genre in genre_ids:
-                print(genre)
-                print(genre.id)
-                # if like_movie
-                
+        for preference in preferences:
+            for genre_id in genre_ids:
+                if preference.id == genre_id.id and movie not in recommend_list:
+                    recommend_list.append(movie)
+        # print(recommend_list)
         
-
+    # 영화 정보를 받아온 후 popularity 순으로 정렬
+    movie_recommend_list = sorted(recommend_list, key=lambda x: x.popularity, reverse=True)
+    # print(movie_recommend_list)
     
-        #     genres = movie.genres.all()
-        #     # print(movie, genres)
-        #     for x in prefer:
-        #         for genre in genres:
-        #             # print(x, genre.pk)
-        #             if x == genre.pk and movie not in recommend_list:
-        #                 recommend_list.append(movie)
-        # # print(recommend_list, len(recommend_list))
-    serializer = UserDetailSerializer(user)
-    return Response(serializer.data)
-    
+    # 좋아요 한 영화가 존재하지 않는다면 랜덤으로 추천
+    if not movie_recommend_list:
+        movie_recommend_list = Movie.objects.order_by('?')
+        # print(movie_recommend_list)
 
-# @api_view(['GET'])
-# @permission_classes([IsAuthenticated])
-# def recommend(request):
-#     user = request.user
-#     like_movies =  user.like_movies.all()
-#     print(like_movies)
-#     prefer = []
-#     for movie in like_movies:
-#         genres = movie.genre_ids.all()
-#         for genre in genres:
-#             if genre.pk not in prefer:
-#                 prefer.append(genre.pk)
-#     # print(prefer)
-#     movies = list(Movie.objects.all().values())
-#     recommend_list = []
-#     for movie in movies:
-#         print(movie)
+    serializer = MovieDetailSerializer(movie_recommend_list, many=True)
+    return Response(serializer.data, status=status.HTTP_200_OK)
 
-#     print(movies)
-#     recommend_list = []
-#     for movie in movies:
-#         if movie in like_movies:
-#             continue
-#         genres = movie.genre_ids.all()
-#         # print(movie, genres)
-#         for x in prefer:
-#             for genre in genres:
-#                 # print(x, genre.pk)
-#                 if x == genre.pk and movie not in recommend_list:
-#                     recommend_list.append(movie)
-#     # print(recommend_list, len(recommend_list))
-#     real_recommend = vote_avg_sort(recommend_list)
-#     if not real_recommend:
-#         real_recommend = vote_avg_sort(movies)
-#     context = {
-#         'like_movies':like_movies,
-#         'real_recommend': real_recommend
-#     }
-#     return Response(context)
 
 @api_view(['GET'])
 # @authentication_classes([JSONWebTokenAuthentication])
@@ -210,6 +172,7 @@ def random(request):
     movies = Movie.objects.order_by('?')[:200]
     serializer = MovieDetailSerializer(movies, many=True)
     return Response(serializer.data, status=status.HTTP_200_OK)
+
 
 @api_view(['GET'])
 def userdetail(request, user_pk):
