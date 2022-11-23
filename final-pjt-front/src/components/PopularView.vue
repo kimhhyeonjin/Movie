@@ -1,11 +1,15 @@
 <template>
   <div>
     <h3> 👉 Popular Movie 👈 </h3>
-    <PopularListView
-      v-for="movie in movies"
-      :key="movie.id"
-      :movie="movie"
-    />
+    <br>
+    <br>
+    <div class="row row-cols-6 g-3 justify-content-center" >
+      <PopularListView
+        v-for="movie in movies"
+        :key="movie.id"
+        :movie="movie"
+      />
+    </div>
   </div>
 </template>
 

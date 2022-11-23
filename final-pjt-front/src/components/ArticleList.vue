@@ -3,7 +3,7 @@
     <!-- <h2>ArticleList</h2> -->
     <br>
     <p @click="goArticleDetail(article.id)">
-      <h3>{{ article.title }}</h3>
+      <b>{{ article.title }}</b>
       <p>작성자 : {{ userDetail }}</p>
   </div>
 </template>
