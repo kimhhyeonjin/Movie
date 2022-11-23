@@ -1,17 +1,19 @@
 <template>
   <div>
     <h1>Signup Page</h1>
+    <br>
     <form @submit.prevent="signUp">
-      <label for="username">username : </label>
+      <label for="username">&nbsp; &nbsp; &nbsp; &nbsp; 아이디 : &nbsp; </label>
       <input type="text" id="username" v-model="username"><br>
-
-      <label for="password1"> password : </label>
+      <br>
+      <label for="password1"> &nbsp; &nbsp; &nbsp; &nbsp;비밀번호 : &nbsp; </label>
       <input type="password" id="password1" v-model="password1"><br>
-
-      <label for="password2"> password confirmation : </label>
+      <br>
+      <label for="password2"> 비밀번호 확인 : &nbsp; </label>
       <input type="password" id="password2" v-model="password2">
-      
-      <input type="submit" value="SignUp">
+      <br>
+      <br>
+      <input type="submit" value="회원가입">
     </form>
   </div>
 </template>
