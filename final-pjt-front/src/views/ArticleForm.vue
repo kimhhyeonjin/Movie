@@ -29,7 +29,18 @@ export default {
       content: null,    
     }
   },
+  computed: {
+    isLogin() {
+      return this.$store.getters.isLogin
+    },
+  },
   methods: {
+    checkLogin() {
+      if (this.isLogin !== true) { 
+        alert('로그인이 필요한 서비스 입니다.')
+        this.$router.push({ name: 'LoginView'})
+      }
+    },
     createArticle() {
       const title = this.title
       const content = this.content
@@ -61,7 +72,10 @@ export default {
         })
 
     }
-  }
+  },
+  created() {
+    this.checkLogin()
+  },
 }
 </script>
 
