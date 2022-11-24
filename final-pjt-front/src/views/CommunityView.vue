@@ -22,18 +22,29 @@ export default {
   computed: {
     articles() {
       return this.$store.state.articles
-    }
+    },
+    isLogin() {
+      return this.$store.getters.isLogin
+    },
   },
   methods: {
+    getCommunity() {
+      if (this.isLogin === true) { 
+        this.getArticleList()
+      } else {
+        alert('로그인이 필요한 서비스 입니다.')
+        this.$router.push({ name: 'LoginView'})
+      }
+    },
     goToCreate() {
       this.$router.push({name: 'ArticleForm'})
     },
     getArticleList() {
       this.$store.dispatch('getArticleList')
-    }
+    },
   },
   created() {
-    this.getArticleList()
+    this.getCommunity()
   }
 }
 </script>

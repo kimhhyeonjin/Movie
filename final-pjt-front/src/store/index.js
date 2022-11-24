@@ -130,9 +130,6 @@ export default new Vuex.Store({
       axios({
         method: 'get',
         url: `${API_URL}/movies/upcoming/`,
-        headers: {
-          Authorization: `Token ${context.state.token}`
-        },
       })
         .then((response) => {
           // console.log(response)
@@ -146,9 +143,6 @@ export default new Vuex.Store({
       axios({
         method: 'get',
         url: `${API_URL}/movies/top-rated/`,
-        headers: {
-          Authorization: `Token ${context.state.token}`
-        },
       })
         .then((response) => {
           // console.log(response)
@@ -162,9 +156,6 @@ export default new Vuex.Store({
       axios({
         method: 'get',
         url: `${API_URL}/movies/popularity/`,
-        headers: {
-          Authorization: `Token ${context.state.token}`
-        },
       })
         .then((response) => {
           // console.log(response)
