@@ -1,10 +1,11 @@
 <template>
-  <div>
+  <div class="reviewform">
     <h3>리뷰 작성</h3>
     <form @submit.prevent="createReview">
-      <label for="content">내용 : &nbsp; </label>
-      <textarea id="content" cols="30" rows="1" v-model="content"></textarea><br>
-      <!-- <input id="content" cols="10" rows="1" v-model.trim="content" class="form-control" type="text" placeholder="리뷰를 작성해주세요 :)" aria-label="Disabled input example" disabled><br> -->
+      <!-- <label for="content">내용 : &nbsp; </label> -->
+      <!-- <textarea id="content" cols="30" rows="1" v-model="content"></textarea> -->
+      <!-- <input cols="10" rows="1" v-model.trim="content" class="form-control" type="text" placeholder="리뷰를 작성해주세요 :)" disabled style="width: 1000px;"><br> -->
+      <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="리뷰를 작성해주세요 :)" rows="1" v-model.trim="content" style="width: 1000px;"></textarea><br>
       <input type="submit" id="submit" value="등록" style="background-color: skyblue">
     </form>
   </div>
@@ -54,5 +55,12 @@ export default {
 </script>
 
 <style>
-
+.reviewform {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  width: 100%;
+  transform: translate( -6.5%, 200%);
+  text-align: start;
+}
 </style>
