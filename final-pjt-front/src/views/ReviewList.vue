@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="review-list">
     <h3>리뷰 목록</h3>
     <div v-show="reviews">
       <ReviewListItem
@@ -58,5 +58,12 @@ export default {
 </script>
 
 <style>
-
+.review-list {
+  position: absolute;
+  top: 370px;
+  left: 50%;
+  width: 100%;
+  transform: translate( -120px, 300px);
+  text-align: start;
+}
 </style>

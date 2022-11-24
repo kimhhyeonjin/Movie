@@ -111,10 +111,10 @@ export default {
 <style>
 .container {
   position: absolute;
-  top: 40%;
+  top: 370px;
   left: 50%;
   width: 100%;
-  transform: translate( -10%, 0%);
+  transform: translate( -10%, -6%);
   font-size: 30px;
   text-align: start;
 }
@@ -122,6 +122,10 @@ export default {
 #overview {
   width: 1000px;
   word-break: break-word;
+  text-overflow: ellipsis;  /* 위에 설정한 100px 보다 길면 말줄임표처럼 표시합니다. */
+  white-space  : nowrap;    /* 줄바꿈을 하지 않습니다. */
+  overflow     : hidden;    /* 내용이 길면 감춤니다 */
+  display      : block;     /* ie6이상 현재요소를 블럭처리합니다. */
 }
 
 .square {
@@ -158,13 +162,14 @@ export default {
   left: 50%;
   width: 100%;
   transform: translate( -78%, -10%);
+  filter: drop-shadow(10px 6px 6px #c3c3c3); /*그림자*/
 }
 
 .like-form {
   position: absolute;
-  top: 40%;
+  top: 3px;
   left: 50%;
   width: 100%;
-  transform: translate( -55%, 440%);
+  transform: translate( -1045px, 440px);
 }
 </style>

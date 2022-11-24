@@ -57,10 +57,10 @@ export default {
 <style>
 .reviewform {
   position: absolute;
-  top: 40%;
+  top: 380px;
   left: 50%;
   width: 100%;
-  transform: translate( -6.5%, 200%);
+  transform: translate( -120px, 120px);
   text-align: start;
 }
 </style>
