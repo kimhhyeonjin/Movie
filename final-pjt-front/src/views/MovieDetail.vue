@@ -162,7 +162,7 @@ export default {
   left: 50%;
   width: 100%;
   transform: translate( -78%, -10%);
-  filter: drop-shadow(10px 6px 6px #c3c3c3); /*그림자*/
+  filter: drop-shadow(10px 6px 6px #000000); /*그림자*/
 }
 
 .like-form {
