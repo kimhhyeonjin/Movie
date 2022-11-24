@@ -27,11 +27,22 @@ export default {
     }
   },
   computed: {
+    isLogin() {
+      return this.$store.getters.isLogin
+    },
     article() {
       return this.$store.state.article
     }
   },
   methods: {
+    checkLogin() {
+      if (this.isLogin === true) { 
+        this.getArticleDetail()
+      } else {
+        alert('로그인이 필요한 서비스 입니다.')
+        this.$router.push({ name: 'LoginView'})
+      }
+    },
     getArticleDetail() {
       this.$store.dispatch('getArticleDetail', `${this.$route.params.article_id}`)
       this.title = this.article.title
@@ -70,7 +81,7 @@ export default {
     }
   },
   created() {
-    this.getArticleDetail()
+    this.checkLogin()
   },
 }
 </script>

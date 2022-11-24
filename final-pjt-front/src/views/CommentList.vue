@@ -12,10 +12,7 @@
 </template>
 
 <script>
-// import axios from 'axios'
 import CommentListItem from '@/components/CommentListItem'
-
-// const API_URL = 'http://127.0.0.1:8000'
 
 export default {
   name: 'CommentList',
@@ -28,31 +25,28 @@ export default {
     }
   },
   computed: {
+    isLogin() {
+      return this.$store.getters.isLogin
+    },
     comments() {
       return this.$store.state.comments
     }
   },
   methods: {
+    checkLogin() {
+      if (this.isLogin === true) { 
+        this.getCommentList()
+      } else {
+        alert('로그인이 필요한 서비스 입니다.')
+        this.$router.push({ name: 'LoginView'})
+      }
+    },
     getCommentList() {
       this.$store.dispatch('getCommentList', `${this.$route.params.article_id}`)
-      // axios({
-      //   method: 'get',
-      //   url: `${API_URL}/communities/articles/${this.$route.params.article_id}/comments`,
-      //   headers: {
-      //   Authorization: `Token ${this.$store.state.token}`
-      //   }
-      // })
-      //   .then((response) => {
-      //     console.log(response)
-      //     this.comments = response.data
-      //   }) 
-      //   .catch((error) => {
-      //     console.log(error)
-      //   })
     }
   },
   created() {
-    this.getCommentList()
+    this.checkLogin()
   }
 }
 </script>

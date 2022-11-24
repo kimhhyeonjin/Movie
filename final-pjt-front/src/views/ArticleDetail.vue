@@ -48,8 +48,22 @@ export default {
     article() {
       return this.$store.state.article
     },
+    isLogin() {
+      return this.$store.getters.isLogin
+    },
   },
   methods: {
+    checkLogin() {
+      if (this.isLogin === true) { 
+        this.getArticleDetail()
+        this.$nextTick(function() {
+          this.isUser()
+        })
+      } else {
+        alert('로그인이 필요한 서비스 입니다.')
+        this.$router.push({ name: 'LoginView'})
+      }
+    },
     isUser: function() {
       setTimeout(() => {
         console.log(this.article.username)
@@ -90,12 +104,7 @@ export default {
     }
   },
   created() {
-    this.getArticleDetail()
-  },
-  mounted() {
-    this.$nextTick(function() {
-      this.isUser()
-    })
+    this.checkLogin()
   },
 }
 </script>

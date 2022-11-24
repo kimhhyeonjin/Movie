@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- <h3>CommentForm</h3> -->
-    <form @submit.prevent="createComment">
+    <form @submit.prevent="checkLogin">
       <br>
       <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="댓글을 작성해주세요 :)" rows="1" v-model.trim="content"></textarea>
       <br>
@@ -22,7 +22,19 @@ export default {
       content: null,
     }
   },
+  computed: {
+    isLogin() {
+      return this.$store.getters.isLogin
+    },
+  },
   methods: {
+    checkLogin() {
+      if (this.isLogin === true) { 
+        this.createComment()
+      } else {
+        alert('로그인이 필요한 서비스 입니다.')
+      }
+    },
     createComment() {
       const content = this.content
       if (!content) {

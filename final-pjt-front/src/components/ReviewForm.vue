@@ -1,7 +1,7 @@
 <template>
   <div class="reviewform">
     <h3>리뷰 작성</h3>
-    <form @submit.prevent="createReview">
+    <form @submit.prevent="checkLogin">
       <!-- <label for="content">내용 : &nbsp; </label> -->
       <!-- <textarea id="content" cols="30" rows="1" v-model="content"></textarea> -->
       <!-- <input cols="10" rows="1" v-model.trim="content" class="form-control" type="text" placeholder="리뷰를 작성해주세요 :)" disabled style="width: 1000px;"><br> -->
@@ -23,7 +23,19 @@ export default {
       content: null,
     }
   },
+  computed: {
+    isLogin() {
+      return this.$store.getters.isLogin
+    },
+  },
   methods: {
+    checkLogin() {
+      if (this.isLogin === true) { 
+        this.createReview()
+      } else {
+        alert('로그인이 필요한 서비스 입니다.')
+      }
+    },
     createReview() {
       const content = this.content
       if (!content) {
