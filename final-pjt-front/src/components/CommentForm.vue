@@ -6,7 +6,7 @@
         <br>
         <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="댓글을 작성해주세요 :)" rows="1" v-model.trim="content"></textarea>
         <br>
-        <input type="submit" id="submit" value="등록" style="background-color: skyblue">
+        <input type="submit" id="submit" value="등록" style="background-color: skyblue; border-radius: 7px">
       </form>
     </div>
   </div>
@@ -69,6 +69,6 @@ export default {
 <style>
 #commentform {
   width: 350px;
-  display: inline-block;
+  text-align: start;
 }
 </style>

@@ -133,7 +133,6 @@ export default {
         },
       })
         .then((response) => {
-          console.log(response)
           this.userdata = response.data
           const id = response.data.id
           axios({
@@ -144,7 +143,6 @@ export default {
             },
           })
           .then((response) => {
-            console.log(response)
             this.isFollow = response.data.isFollow
             this.userData()
           })

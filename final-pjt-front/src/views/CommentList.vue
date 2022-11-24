@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div id="commentlist">
     <!-- <h3>CommentList</h3> -->
-    <h4>댓글</h4>
+    <h4>댓글 목록</h4>
     <CommentListItem
       v-for="comment in comments"
       :key="comment.id"
@@ -52,5 +52,7 @@ export default {
 </script>
 
 <style>
-
+#commentlist {
+  text-align: start;
+}
 </style>

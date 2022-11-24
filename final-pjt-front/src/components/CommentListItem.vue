@@ -3,7 +3,7 @@
     <!-- <h3>CommentListItem</h3> -->
     <p>{{ comment.content }}</p>
     <div v-if="is_user">
-      <button @click.prevent="deleteComment" style="background-color: skyblue">삭제</button>
+      <button @click.prevent="deleteComment" style="background-color: skyblue; border-radius: 7px">삭제</button>
     </div>
   </div>
 </template>

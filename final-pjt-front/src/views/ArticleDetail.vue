@@ -1,27 +1,32 @@
 <template>
   <div>
-    <h2>📋게시글 세부 정보</h2>
+    <!-- <h2>게시글 세부 정보</h2> -->
     <br>
-    <h3>제목 : {{ article.title }}</h3>
-    <p>작성자 : 
-      <span @click="goToProfile(article.username)">
-        {{ article.username }}
-      </span>
-    </p>
-    <p>내용 : {{ article.content }}</p>
-    <p>작성일자 : {{ article.created_at }}</p>
-    <p>수정일자 : {{ article.updated_at }}</p>
-    <div v-if="is_user">
-      <button @click.prevent="updateArticle(article.id)" style="background-color: skyblue">수정</button>
-      <button @click.prevent="deleteArticle(article.id)" style="background-color: skyblue">삭제</button>
-    </div>
-    <br>
+    <span id="container">
+    <h1>📋 {{ article.title }}</h1>
+    <hr>
+      <p>작성자 : 
+        <span @click="goToProfile(article.username)">
+          {{ article.username }}
+        </span>
+      </p>
+      <p>내용 : {{ article.content }}</p>
+      <p>작성일자 : {{ article.created_at }}</p>
+      <p>수정일자 : {{ article.updated_at }}</p>
+      <div v-if="is_user">
+        <button @click.prevent="updateArticle(article.id)" style="background-color: skyblue; border-radius: 7px">수정</button>
+        <button @click.prevent="deleteArticle(article.id)" style="background-color: skyblue; border-radius: 7px">삭제</button>
+      </div>
+    </span>
+    <hr>
     <CommentList/>
     <CommentForm/>
     <br>
-    <form @submit.prevent="backToCommunity">
-      <input type="submit" value="목록" style="background-color: skyblue">
-    </form>
+    <div id="inputform">
+      <form @submit.prevent="backToCommunity">
+        <input type="submit" value="목록" style="background-color: skyblue; border-radius: 7px;">
+      </form>
+    </div>
   </div>
 </template>
 
@@ -89,7 +94,6 @@ export default {
         },
       })
         .then(() => {
-          console.log(this.$router)
           this.$router.push({name: 'CommunityView'})
         })
         .catch((error) => {
@@ -107,5 +111,13 @@ export default {
 </script>
 
 <style>
+#container {
+  text-align: start;
+  width: 500px;
+  height: 250px;
+}
 
+#inputform {
+  text-align: end;
+}
 </style>
