@@ -8,7 +8,7 @@
       <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="댓글을 작성해주세요 :)" rows="2" v-model.trim="content"></textarea>
       <!-- <input id="content" cols="10" rows="1"  v-model.trim="content" class="form-control" type="text" placeholder="댓글을 작성해주세요 :)" aria-label="Disabled input example" disabled><br> -->
       <br>
-      <input type="submit" id="submit" value="제출" style="background-color: skyblue">
+      <input type="submit" id="submit" value="등록" style="background-color: skyblue">
     </form>
   </div>
 </template>

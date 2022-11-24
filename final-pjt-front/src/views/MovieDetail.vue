@@ -78,6 +78,7 @@ export default {
         .then((response) => {
           console.log(response)
           this.movie = response.data
+          this.checkIsLike()
         })
         .catch((error) => {
           console.log(error)
@@ -98,6 +99,9 @@ export default {
         .catch((error) => {
           console.log(error)
         })
+    },
+    checkIsLike() {
+
     }
   }
 }

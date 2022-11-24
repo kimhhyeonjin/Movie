@@ -60,11 +60,6 @@ export default {
 
       }, 40)
     },
-    // isUser() {
-    //   if (this.article.username === this.$store.state.user.username) {
-    //     this.is_user = true
-    //   }
-    // },
     goToProfile() {
       this.$router.push({name: 'MypageView', params: {username: `${this.article.username}`}})
     },  
@@ -96,11 +91,6 @@ export default {
   },
   created() {
     this.getArticleDetail()
-    // this.$nextTick(function() {
-    //   if (this.article.username === this.$store.state.user.username) {
-    //     this.is_user = true
-    //   }
-    // })
   },
   mounted() {
     this.$nextTick(function() {

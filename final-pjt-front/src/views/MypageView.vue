@@ -54,15 +54,10 @@ export default {
       }
     },
     checkIsFollow() {
-      console.log(this.followings)
       if (this.followings.includes(this.user.pk)) {
         this.isFollow = true
-        console.log('checkIsFollow함수')
-        console.log(this.isFollow)
       } else {
         this.isFollow = false
-        console.log('checkIsFollow함수')
-        console.log(this.isFollow)
       }
     },
     followUser() {
