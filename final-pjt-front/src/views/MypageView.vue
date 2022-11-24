@@ -1,14 +1,15 @@
 <template>
   <div>
     <!-- <h1>Mypage</h1> -->
-    <h1> 😘 {{ username }}의 프로필</h1>
+    <h1> 😘 {{ username }} 의 프로필</h1>
     <!-- <br>{{ userdata }} -->
     <br>
-    <h5>팔로워 : {{ followingsCnt }}명</h5>
-    <h5>팔로잉 : {{ followersCnt }}명</h5>
+    <h4> 👭🏼 팔로워 : {{ followingsCnt }}명</h4>
+    <h4> 👬🏻 팔로잉 : {{ followersCnt }}명</h4>
     <br>
     <div v-show="likeMovies">
-      <h3>좋아요 한 영화</h3>
+      <h3> 👉 좋아요 한 영화</h3>
+      <br>
       <!-- <h5>{{ userdata?.like_movies }}</h5> -->
       <LikeMovies
         v-for="likeMovie in likeMovies"
