@@ -1,18 +1,20 @@
 <template>
   <div>
     <h2>게시글 작성</h2>
-    <form @submit.prevent="createArticle">
-      <div class="mb-3">
-        <!-- <label for="exampleFormControlInput1" class="form-label">제목</label> -->
-        <input type="text" v-model.trim="title" class="form-control" id="exampleFormControlInput1" placeholder="제목">
-      </div>
-      <div class="mb-3">
-        <!-- <label for="content">내용 : </label> -->
-        <!-- <textarea id="content" cols="30" rows="10" v-model.trim="content"></textarea><br> -->
-        <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="내용" rows="3" v-model.trim="content"></textarea>
-      </div>
-      <input id="submit" type="submit" value="등록" style="background-color: skyblue">
-    </form>
+    <div id="create">
+      <form @submit.prevent="createArticle">
+        <div class="mb-3">
+          <!-- <label for="exampleFormControlInput1" class="form-label">제목</label> -->
+          <input type="text" v-model.trim="title" class="form-control" id="exampleFormControlInput1" placeholder="제목">
+        </div>
+        <div class="mb-3">
+          <!-- <label for="content">내용 : </label> -->
+          <!-- <textarea id="content" cols="30" rows="10" v-model.trim="content"></textarea><br> -->
+          <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="내용" rows="3" v-model.trim="content"></textarea>
+        </div>
+        <input id="submit" type="submit" value="등록" style="background-color: skyblue">
+      </form>
+    </div>
   </div>
 </template>
 
@@ -79,5 +81,8 @@ export default {
 </script>
 
 <style>
-
+#create {
+  width: 860px;
+  display: inline-block;
+}
 </style>

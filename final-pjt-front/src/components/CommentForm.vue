@@ -1,12 +1,14 @@
 <template>
   <div>
     <!-- <h3>CommentForm</h3> -->
-    <form @submit.prevent="checkLogin">
-      <br>
-      <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="댓글을 작성해주세요 :)" rows="1" v-model.trim="content"></textarea>
-      <br>
-      <input type="submit" id="submit" value="등록" style="background-color: skyblue">
-    </form>
+    <div id="commentform">
+      <form @submit.prevent="checkLogin">
+        <br>
+        <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="댓글을 작성해주세요 :)" rows="1" v-model.trim="content"></textarea>
+        <br>
+        <input type="submit" id="submit" value="등록" style="background-color: skyblue">
+      </form>
+    </div>
   </div>
 </template>
 
@@ -65,5 +67,8 @@ export default {
 </script>
 
 <style>
-
+#commentform {
+  width: 350px;
+  display: inline-block;
+}
 </style>

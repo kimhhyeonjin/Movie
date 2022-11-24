@@ -1,6 +1,9 @@
 <template>
   <div>
     <!-- <h1>Mypage</h1> -->
+    <img src="@/assets/보노보노 프로필.png" style="width: 300px; height: 300px;">
+    <br>
+    <br>
     <h1> 😘 {{ username }} 의 프로필</h1>
     <!-- <br>{{ userdata }} -->
     <br>

@@ -1,13 +1,17 @@
 <template>
-  <div>
-    <h2>ArticleUpdateForm</h2>
-    <form @submit.prevent="updateArticle">
-      <label for="title">제목 : </label>
-      <input type="text" id="title" v-model.trim="title"><br>
-      <label for="content">내용 : </label>
-      <textarea id="content" cols="30" rows="10" v-model.trim="content"></textarea><br>
-      <input id="submit" type="submit" value="수정">
-    </form>
+  <div id="update">
+    <h2>게시글 수정</h2>
+    <div>
+      <form @submit.prevent="updateArticle">
+        <div class="mb-3">
+          <input type="text" v-model.trim="title" class="form-control" id="exampleFormControlInput1" placeholder="제목">
+        </div>
+        <div class="mb-3">
+          <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="내용" rows="3" v-model.trim="content"></textarea>
+        </div>
+        <input id="submit" type="submit" value="수정">
+      </form>
+    </div>
   </div>
 </template>
 
@@ -86,5 +90,8 @@ export default {
 </script>
 
 <style>
-
+#update {
+  width: 860px;
+  display: inline-block;
+}
 </style>

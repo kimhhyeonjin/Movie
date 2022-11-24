@@ -1,5 +1,8 @@
 <template>
   <div>
+    <img src="@/assets/보노보노 프로필.png" style="width: 300px; height: 300px;">
+    <br>
+    <br>
     <!-- <h1>Mypage</h1> -->
     <h1> 😘 {{ username }} 의 프로필</h1>
     <!-- <br>{{ userdata }} -->
@@ -9,7 +12,6 @@
     <br>
     <div v-show="likeMovies">
       <h3> 👉 좋아요 한 영화</h3>
-      <br>
       <!-- <h5>{{ userdata?.like_movies }}</h5> -->
       <LikeMovies
         v-for="likeMovie in likeMovies"
