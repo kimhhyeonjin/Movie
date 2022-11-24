@@ -66,12 +66,9 @@ export default {
     },
     isUser: function() {
       setTimeout(() => {
-        console.log(this.article.username)
         if (this.article.username === this.$store.state.user.username) {
           this.is_user = true
         }
-        console.log(this.article.username)
-
       }, 40)
     },
     goToProfile() {

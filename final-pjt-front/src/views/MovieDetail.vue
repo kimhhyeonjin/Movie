@@ -36,7 +36,8 @@
       width="180px"
       height="260px"
     > -->
-    <div class="like-form">
+    <p>{{ movie }}</p>
+    <div v-show="isLogin" class="like-form">
       <form @submit.prevent="likeMovie">
         <input v-show="isLike" type="submit" value="좋아요 취소" style="background-color: yellow">
         <input v-show="!isLike" type="submit" value="좋아요" style="background-color: skyblue ">
@@ -66,6 +67,14 @@ export default {
       movie: null,
       isLike: null,
     }
+  },
+  computed: {
+    isLogin() {
+      return this.$store.state.isLogin
+    },
+    user() {
+      return this.$store.state.user
+    },
   },
   created() {
     this.getMovieDetail()
@@ -102,7 +111,11 @@ export default {
         })
     },
     checkIsLike() {
-
+      if (this.movie.like_users.includes(this.user.pk)) {
+        this.isLike = true
+      } else {
+        this.isLike = false
+      }
     }
   }
 }

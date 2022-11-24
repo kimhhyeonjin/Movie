@@ -14,11 +14,6 @@
     <br>
     <h5>팔로잉 : {{ followers }}</h5>
     <br>
-    <!-- 자기자신을 팔로우하지 않도록 v-show 이용 -->
-    <!-- <form v-show="followMe" @submit.prevent="followUser">
-      <input v-show="isFollow" type="submit" value="팔로우 취소">
-      <input v-show="!isFollow" type="submit" value="팔로우">
-    </form> -->
   </div>
 </template>
 
@@ -37,7 +32,6 @@ export default {
       followers: 0,
       followings: 0,
       isFollow: false,
-      followMe: false,
     }
   },
   computed: {
@@ -50,19 +44,11 @@ export default {
   },
   methods: {
     getUser() {
-      if (this.isLogin === true) { 
-        this.isFollowMe()
+      if (this.isLogin === true) {
         this.userData()
       } else {
         alert('로그인이 필요한 서비스 입니다.')
         this.$router.push({ name: 'LoginView'})
-      }
-    },
-    isFollowMe() {
-      if (this.username === this.user.username ) {
-        this.followMe = false
-      } else {
-        this.followMe = true
       }
     },
     checkIsFollow() {
@@ -140,7 +126,6 @@ export default {
   },
   beforeRouteUpdate(to, from, next){
     this.username = to.params.username
-    this.followMe = false
     next()
   },
 }
