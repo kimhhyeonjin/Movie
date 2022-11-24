@@ -8,11 +8,10 @@
       <h5>좋아요한 영화</h5>
       <h5>{{ userdata?.like_movies }}</h5>
     </div>
-    {{ userdata }}
     <br>
-    <h5>팔로워 : {{ followings }}</h5>
+    <h5>팔로워 : {{ followingsCnt }}명</h5>
     <br>
-    <h5>팔로잉 : {{ followers }}</h5>
+    <h5>팔로잉 : {{ followersCnt }}명</h5>
     <br>
     <!-- 자기자신을 팔로우하지 않도록 v-show 이용 -->
     <form v-show="followMe" @submit.prevent="followUser">
@@ -34,8 +33,10 @@ export default {
       username: this.$route.params.username,
       userdata: null,
       likeMovies: false,
-      followers: 0,
-      followings: 0,
+      followers: false,
+      followings: false,
+      followersCnt: 0,
+      followingsCnt: 0,
       isFollow: false,
       followMe: false,
     }
@@ -65,6 +66,27 @@ export default {
         this.followMe = true
       }
     },
+    userData() {
+      axios({
+        method: 'get',
+        url: `${API_URL}/accounts/like/getuserid/${this.$route.params.username}/`,
+        headers: {
+          Authorization: `Token ${this.$store.state.token}`
+        },
+      })
+        .then((response) => {
+          this.userdata = response.data
+          this.likeMovies = response.data.like_movies
+          this.followers = response.data.followers
+          this.followings = response.data.followings
+          this.followersCnt = response.data.followers.length
+          this.followingsCnt = response.data.followings.length
+          this.checkIsFollow()
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    },
     checkIsFollow() {
       if (this.followings.includes(this.user.pk)) {
         this.isFollow = true
@@ -91,44 +113,14 @@ export default {
               Authorization: `Token ${this.$store.state.token}`
             },
           })
-            .then((response) => {
-              console.log(response)
-              this.isFollow = response.data.isFollow
-              console.log('checkIsFollow함수')
-              console.log(this.isFollow)
-              // this.isFollow = !this.isFollow
-              this.followers = response.data.followers
-              // console.log('팔로워')
-              // console.log(this.followers)
-              this.followings = response.data.following
-              // console.log('팔로잉')
-              // console.log(this.followings)
-              this.userData()
-            })
-            .catch((error) => {
-              console.log(error)
-            })
-        })
-        .catch((error) => {
-          console.log(error)
-        })
-    },
-    userData() {
-      axios({
-        method: 'get',
-        url: `${API_URL}/accounts/like/getuserid/${this.$route.params.username}/`,
-        headers: {
-          Authorization: `Token ${this.$store.state.token}`
-        },
-      })
-        .then((response) => {
-          this.userdata = response.data
-          this.likeMovies = response.data.like_movies
-          this.followers = response.data.followers
-          console.log(this.followers)
-          this.followings = response.data.followings
-          console.log(this.followings)
-          this.checkIsFollow()
+          .then((response) => {
+            console.log(response)
+            this.isFollow = response.data.isFollow
+            this.userData()
+          })
+          .catch((error) => {
+            console.log(error)
+          })
         })
         .catch((error) => {
           console.log(error)

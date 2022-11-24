@@ -70,8 +70,7 @@ export default {
           Authorization: `Token ${this.$store.state.token}`
         }
       })
-        .then((response) => {
-          console.log(response)
+        .then(() => {
           this.$router.push({ name: 'ArticleDetail', params: `${this.$route.params.article_id}`})
         })
         .catch((error) => {

@@ -36,7 +36,7 @@ export default {
         }
       })
         .then((response) => {
-          console.log(response)
+          // console.log(response)
           this.userDetail = response.data.username
         })
         .catch((error) => {

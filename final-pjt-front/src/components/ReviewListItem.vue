@@ -42,8 +42,7 @@ export default {
           Authorization: `Token ${this.$store.state.token}`
         },
       })
-        .then((response) => {
-          console.log(response)
+        .then(() => {
           this.$store.dispatch('getReviewList', `${this.movie_id}`)
         })
         .catch((error) => {

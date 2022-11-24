@@ -81,12 +81,10 @@ export default new Vuex.Store({
       state.user = ''
       state.token = ''
       state.isLogin = false
-      console.log(state.user)
       router.push({ name: 'LoginView' })
     },
     GET_USER(state, user) {
       state.user = user
-      console.log(state.user)
     },
     GET_CREATE_USER(state, createUser) {
       state.createUser = createUser
@@ -102,7 +100,6 @@ export default new Vuex.Store({
         },
       })
         .then((response) => {
-          // console.log(response)
           context.commit('GET_MOVIES', response.data)
         })
         .catch((error) => {
@@ -110,7 +107,6 @@ export default new Vuex.Store({
         })
     },
     getRecommendedMovies(context, payload) {
-      console.log(payload)
       axios({
         method: 'get',
         url: `${API_URL}/movies/recommend/${payload}/`,
@@ -119,7 +115,6 @@ export default new Vuex.Store({
         },
       })
         .then((response) => {
-          console.log(response)
           context.commit('GET_RECOMMENDED_MOVIES', response.data)
         })
         .catch((error) => {
@@ -132,7 +127,6 @@ export default new Vuex.Store({
         url: `${API_URL}/movies/upcoming/`,
       })
         .then((response) => {
-          // console.log(response)
           context.commit('GET_UPCOMING_MOVIES', response.data)
         })
         .catch((error) => {
@@ -145,7 +139,6 @@ export default new Vuex.Store({
         url: `${API_URL}/movies/top-rated/`,
       })
         .then((response) => {
-          // console.log(response)
           context.commit('GET_TOP_RATED_MOVIES', response.data)
         })
         .catch((error) => {
@@ -158,7 +151,6 @@ export default new Vuex.Store({
         url: `${API_URL}/movies/popularity/`,
       })
         .then((response) => {
-          // console.log(response)
           context.commit('GET_POPULARITY_MOVIES', response.data)
         })
         .catch((error) => {
@@ -174,7 +166,6 @@ export default new Vuex.Store({
         },
       })
         .then((response) => {
-          console.log(response)
           context.commit('GET_ARTICLELIST', response.data)
         })
         .catch((error) => {
@@ -190,7 +181,6 @@ export default new Vuex.Store({
         },
       })
         .then((response) => {
-          console.log(response)
           context.commit('GET_ARTICLEDETAIL', response.data)
         })
         .catch((error) => {
@@ -206,7 +196,6 @@ export default new Vuex.Store({
         },
       })
         .then((response) => {
-          console.log(response)
           context.commit('GET_COMMENTLIST', response.data)
         })
         .catch((error) => {
@@ -223,7 +212,6 @@ export default new Vuex.Store({
         },
       })
         .then((response) => {
-          console.log(response)
           context.commit('GET_REVIEWLIST', response.data)
         })
         .catch((error) => {
@@ -242,7 +230,6 @@ export default new Vuex.Store({
         }
       })
         .then((response) => {
-          // console.log(response)
           context.commit('SIGNUP', response.data.key)
         })
         .catch((error) => {
@@ -259,7 +246,6 @@ export default new Vuex.Store({
         }
       })
         .then((response) => {
-          console.log(response)
           context.commit('LOGIN', response.data.key)
           context.dispatch('getUser', response.data.key)
         })
@@ -276,8 +262,7 @@ export default new Vuex.Store({
           Authorization: `Token ${context.state.token}`
         }
       })
-        .then((response) => {
-          console.log(response)
+        .then(() => {
           context.commit('LOGOUT_USER')
         })
         .catch((error) => {
@@ -293,7 +278,6 @@ export default new Vuex.Store({
         },
       })
         .then((response) => {
-          console.log(response)
           context.commit('GET_USER', response.data)
         })
         .catch((error) => {
@@ -309,7 +293,6 @@ export default new Vuex.Store({
         },
       })
         .then((response) => {
-          console.log(response)
           context.commit('GET_CREATE_USER', response.data)
         })
         .catch((error) => {

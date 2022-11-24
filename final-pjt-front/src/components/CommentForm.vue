@@ -52,8 +52,7 @@ export default {
           Authorization: `Token ${this.$store.state.token}`
         }
       })
-        .then((response) => {
-          console.log(response)
+        .then(() => {
           this.$store.dispatch('getCommentList', `${this.$route.params.article_id}`)
           this.content = null
         })

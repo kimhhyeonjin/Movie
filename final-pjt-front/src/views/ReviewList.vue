@@ -36,19 +36,6 @@ export default {
   methods: {
     getReviewList() {
       this.$store.dispatch('getReviewList', `${this.$route.params.movie_id}`)
-      // axios({
-        //   method: 'get',
-      //   url: `${API_URL}/movies/${this.$route.params.movie_id}/reviews/`
-      // })
-      //   .then((response) => {
-        //     console.log(response)
-      //     const reviews = response.data
-      //     this.reviews = reviews
-      //     this.$router.push({ name: 'MovieDetail', params: `{ movie_id: ${this.$route.params.movie_id} }` })
-      //   })
-      //   .catch((error) => {
-        //     console.log(error)
-      //   })
     }
   },
   created() {

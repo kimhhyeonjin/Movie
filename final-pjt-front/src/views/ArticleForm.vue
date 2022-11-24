@@ -63,8 +63,7 @@ export default {
           Authorization: `Token ${this.$store.state.token}`
         }
       })
-        .then((response) => {
-          console.log(response)
+        .then(() => {
           this.$router.push({ name: 'CommunityView' })
         })
         .catch((error) => {

@@ -86,7 +86,6 @@ export default {
         url: `${API_URL}/movies/${this.$route.params.movie_id}/`
       })
         .then((response) => {
-          console.log(response)
           this.movie = response.data
           this.checkIsLike()
         })
@@ -103,7 +102,6 @@ export default {
         },
       })
         .then((response) => {
-          console.log(response)
           this.isLike = response.data.isLike
         })
         .catch((error) => {

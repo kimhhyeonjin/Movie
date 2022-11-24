@@ -19,7 +19,6 @@ export default {
   methods: {
     GetKeyword() {
       this.$emit('get-keyword', this.keyword)
-      console.log(this.keyword)
       this.keyword = ''
     }
   }
