@@ -2,12 +2,12 @@
   <div>
     <h2>📋게시글 세부 정보</h2>
     <br>
+    <h3>제목 : {{ article.title }}</h3>
     <p>작성자 : 
       <span @click="goToProfile(article.username)">
         {{ article.username }}
       </span>
     </p>
-    <p>제목 : {{ article.title }}</p>
     <p>내용 : {{ article.content }}</p>
     <p>작성일자 : {{ article.created_at }}</p>
     <p>수정일자 : {{ article.updated_at }}</p>
