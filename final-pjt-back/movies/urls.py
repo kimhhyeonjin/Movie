@@ -27,5 +27,7 @@ urlpatterns = [
     path('recommend/<int:user_pk>/', views.recommend),
     # 유저 정보
     path('userdetail/<int:user_pk>/', views.userdetail),
+    # 좋아요 한 영화정보 가져오기
+    path('like_movies/<int:user_pk>/', views.like_movies),
 ]
 

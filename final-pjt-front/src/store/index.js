@@ -102,8 +102,8 @@ export default new Vuex.Store({
         .then((response) => {
           context.commit('GET_MOVIES', response.data)
         })
-        .catch((error) => {
-          console.log(error)
+        .catch(() => {
+          // console.log(error)
         })
     },
     getRecommendedMovies(context, payload) {
@@ -117,8 +117,8 @@ export default new Vuex.Store({
         .then((response) => {
           context.commit('GET_RECOMMENDED_MOVIES', response.data)
         })
-        .catch((error) => {
-          console.log(error)
+        .catch(() => {
+          // console.log(error)
         })
     },
     getUpcomingMovies(context) {
@@ -129,8 +129,8 @@ export default new Vuex.Store({
         .then((response) => {
           context.commit('GET_UPCOMING_MOVIES', response.data)
         })
-        .catch((error) => {
-          console.log(error)
+        .catch(() => {
+          // console.log(error)
         })
     },
     getTopRatedMovies(context) {
@@ -141,8 +141,8 @@ export default new Vuex.Store({
         .then((response) => {
           context.commit('GET_TOP_RATED_MOVIES', response.data)
         })
-        .catch((error) => {
-          console.log(error)
+        .catch(() => {
+          // console.log(error)
         })
     },
     getPopularMovies(context) {
@@ -153,8 +153,8 @@ export default new Vuex.Store({
         .then((response) => {
           context.commit('GET_POPULARITY_MOVIES', response.data)
         })
-        .catch((error) => {
-          console.log(error)
+        .catch(() => {
+          // console.log(error)
         })
     },
     getArticleList(context) {
@@ -168,8 +168,8 @@ export default new Vuex.Store({
         .then((response) => {
           context.commit('GET_ARTICLELIST', response.data)
         })
-        .catch((error) => {
-          console.log(error)
+        .catch(() => {
+          // console.log(error)
         })
     },
     getArticleDetail(context, payload) {
@@ -183,8 +183,8 @@ export default new Vuex.Store({
         .then((response) => {
           context.commit('GET_ARTICLEDETAIL', response.data)
         })
-        .catch((error) => {
-          console.log(error)
+        .catch(() => {
+          // console.log(error)
         })
     },
     getCommentList(context, payload) {
@@ -198,8 +198,8 @@ export default new Vuex.Store({
         .then((response) => {
           context.commit('GET_COMMENTLIST', response.data)
         })
-        .catch((error) => {
-          console.log(error)
+        .catch(() => {
+          // console.log(error)
           context.commit('NO_COMMENTLIST')
         })
     },
@@ -214,8 +214,8 @@ export default new Vuex.Store({
         .then((response) => {
           context.commit('GET_REVIEWLIST', response.data)
         })
-        .catch((error) => {
-          console.log(error)
+        .catch(() => {
+          // console.log(error)
           context.commit('NO_REVIEWLIST')
         })
     },
@@ -232,8 +232,8 @@ export default new Vuex.Store({
         .then((response) => {
           context.commit('SIGNUP', response.data.key)
         })
-        .catch((error) => {
-          console.log(error)
+        .catch(() => {
+          // console.log(error)
         })
     },
     logIn(context, payload) {
@@ -249,8 +249,8 @@ export default new Vuex.Store({
           context.commit('LOGIN', response.data.key)
           context.dispatch('getUser', response.data.key)
         })
-        .catch((error) => {
-          console.log(error)
+        .catch(() => {
+          // console.log(error)
           alert('다시 시도해주세요')
         })
     },
@@ -265,8 +265,8 @@ export default new Vuex.Store({
         .then(() => {
           context.commit('LOGOUT_USER')
         })
-        .catch((error) => {
-          console.log(error)
+        .catch(() => {
+          // console.log(error)
         })
     },
     getUser(context, payload) {
@@ -280,8 +280,8 @@ export default new Vuex.Store({
         .then((response) => {
           context.commit('GET_USER', response.data)
         })
-        .catch((error) => {
-          console.log(error)
+        .catch(() => {
+          // console.log(error)
         })
     },
     getCreateUser(context, payload) {
@@ -295,8 +295,8 @@ export default new Vuex.Store({
         .then((response) => {
           context.commit('GET_CREATE_USER', response.data)
         })
-        .catch((error) => {
-          console.log(error)
+        .catch(() => {
+          // console.log(error)
         })
     },
   },

@@ -2,16 +2,20 @@
   <div>
     <!-- <h1>Mypage</h1> -->
     <h1> 😘 {{ username }}의 프로필</h1>
-    <br>
     <!-- <br>{{ userdata }} -->
-    <div v-show="likeMovies">
-      <h5>좋아요한 영화</h5>
-      <h5>{{ userdata?.like_movies }}</h5>
-    </div>
     <br>
     <h5>팔로워 : {{ followingsCnt }}명</h5>
-    <br>
     <h5>팔로잉 : {{ followersCnt }}명</h5>
+    <br>
+    <div v-show="likeMovies">
+      <h3>좋아요 한 영화</h3>
+      <!-- <h5>{{ userdata?.like_movies }}</h5> -->
+      <LikeMovies
+        v-for="likeMovie in likeMovies"
+        :key="likeMovie.id"
+        :likeMovie="likeMovie"
+      />
+    </div>
     <br>
     <!-- 자기자신을 팔로우하지 않도록 v-show 이용 -->
     <form v-show="followMe" @submit.prevent="followUser">
@@ -22,12 +26,16 @@
 </template>
 
 <script>
+import LikeMovies from '@/components/LikeMovies'
 import axios from 'axios'
 
 const API_URL = 'http://127.0.0.1:8000'
 
 export default {
-  name: 'MypageView',  
+  name: 'MypageView',
+  components: {
+    LikeMovies
+  },
   data() {
     return {
       username: this.$route.params.username,
@@ -76,12 +84,12 @@ export default {
       })
         .then((response) => {
           this.userdata = response.data
-          this.likeMovies = response.data.like_movies
           this.followers = response.data.followers
           this.followings = response.data.followings
           this.followersCnt = response.data.followers.length
           this.followingsCnt = response.data.followings.length
           this.checkIsFollow()
+          this.getMovie()
         })
         .catch((error) => {
           console.log(error)
@@ -93,6 +101,23 @@ export default {
       } else {
         this.isFollow = false
       }
+    },
+    getMovie() {
+      axios({
+        method: 'get',
+        url: `${API_URL}/movies/like_movies/${this.userdata.id}/`,
+        headers: {
+          Authorization: `Token ${this.$store.state.token}`
+        },
+      })
+        .then((response) => {
+          if (response.data.length !== 0) {
+            this.likeMovies = response.data
+          }
+        })
+        .catch((error) => {
+          console.log(error)
+        })
     },
     followUser() {
       axios({

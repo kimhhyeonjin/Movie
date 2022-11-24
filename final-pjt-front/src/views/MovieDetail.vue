@@ -36,7 +36,6 @@
       width="180px"
       height="260px"
     > -->
-    <p>{{ movie }}</p>
     <div v-show="isLogin" class="like-form">
       <form @submit.prevent="likeMovie">
         <input v-show="isLike" type="submit" value="좋아요 취소" style="background-color: yellow">

@@ -181,3 +181,19 @@ def userdetail(request, user_pk):
     user = get_object_or_404(get_user_model(), pk=user_pk)
     serializer = UserDetailSerializer(user)
     return Response(serializer.data)
+
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def like_movies(request, user_pk):
+    user = get_object_or_404(get_user_model(), pk=user_pk)
+    movies = get_list_or_404(Movie)
+    
+    # 좋아하는 영화 정보 가져오기
+    like_movies = []
+    for movie in movies:
+        for like_user in movie.like_users.all():
+            if user.id == like_user.id:
+                like_movies.append(movie)
+    serializer = MovieDetailSerializer(like_movies, many=True)
+    return Response(serializer.data)
