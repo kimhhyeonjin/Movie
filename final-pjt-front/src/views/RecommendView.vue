@@ -28,6 +28,9 @@ export default {
     RecommendItem,
   },
   computed: {
+    isLogin() {
+      return this.$store.getters.isLogin
+    },
     user() {
       return this.$store.state.user
     },
@@ -36,12 +39,20 @@ export default {
     },
   },
   methods: {
+    getRecommend() {
+      if (this.isLogin === true) {
+        this.getRecommendedMovies()
+      } else {
+        alert('로그인이 필요한 서비스 입니다.')
+        this.$router.push({ name: 'LoginView'})
+      }
+    },
     getRecommendedMovies() {
       this.$store.dispatch('getRecommendedMovies', this.user.pk)
-    }
+    },
   },
   created() {
-    this.getRecommendedMovies()
+    this.getRecommend()
   }
 }
 </script>

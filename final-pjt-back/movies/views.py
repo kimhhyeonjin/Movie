@@ -20,9 +20,9 @@ from rest_framework.permissions import IsAuthenticated
 import json
 import random
 
-def vote_avg_sort(arr):
-    arr.sort(key=lambda x:x.vote_average, reverse=True)
-    return arr[:10]
+# def vote_avg_sort(arr):
+#     arr.sort(key=lambda x:x.vote_average, reverse=True)
+#     return arr[:10]
 
 # 영화 목록
 @api_view(['GET'])
@@ -61,6 +61,7 @@ def movie_detail(request, movie_pk):
 
 # 영화 좋아요
 @api_view(['POST'])
+@permission_classes([IsAuthenticated])
 def movie_like(request, movie_pk):
     movie = get_object_or_404(Movie, pk=movie_pk)
     user = request.user
@@ -86,7 +87,7 @@ def review_list(request, movie_pk):
 
 # 영화별 리뷰 생성
 @api_view(['POST'])
-# @permission_classes([IsAuthenticated])
+@permission_classes([IsAuthenticated])
 def create_review(request, movie_pk):
     movie = get_object_or_404(Movie, pk=movie_pk)
     serializer = ReviewSerializer(data=request.data)
@@ -96,7 +97,7 @@ def create_review(request, movie_pk):
 
 # 영화별 리뷰별 조회, 수정, 삭제
 @api_view(['GET', 'PUT', 'DELETE'])
-# @permission_classes([IsAuthenticated])
+@permission_classes([IsAuthenticated])
 def review_detail(request, review_pk):
     review = get_object_or_404(Review, pk=review_pk)
 
@@ -175,6 +176,7 @@ def random(request):
 
 
 @api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def userdetail(request, user_pk):
     user = get_object_or_404(get_user_model(), pk=user_pk)
     serializer = UserDetailSerializer(user)

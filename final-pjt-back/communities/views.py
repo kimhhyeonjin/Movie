@@ -31,6 +31,7 @@ def article_list(request):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 @api_view(['GET', 'PUT', 'DELETE'])
+@permission_classes([IsAuthenticated])
 def article_detail(request, article_pk):
     article = get_object_or_404(Article, pk=article_pk)
 
@@ -49,6 +50,7 @@ def article_detail(request, article_pk):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 @api_view(['POST'])
+@permission_classes([IsAuthenticated])
 def article_like(request, article_pk):
     article = get_object_or_404(Article, pk=article_pk)
     user = request.user
@@ -71,12 +73,14 @@ def article_like(request, article_pk):
     # return Response(serializer.data)
 
 @api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def comment_list(request, article_pk):
     comments = get_list_or_404(Comment, article=article_pk)
     serializer = CommentSerializer(comments, many=True)
     return Response(serializer.data)
 
 @api_view(['POST'])
+@permission_classes([IsAuthenticated])
 def create_comment(request, article_pk):
     article = get_object_or_404(Article, pk=article_pk)
     serializer = CommentSerializer(data = request.data)
@@ -85,6 +89,7 @@ def create_comment(request, article_pk):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 @api_view(['GET', 'PUT', 'DELETE'])
+@permission_classes([IsAuthenticated])
 def comment_detail(request, comment_pk):
     comment = get_object_or_404(Comment, pk=comment_pk)
 
