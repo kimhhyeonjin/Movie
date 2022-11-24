@@ -184,6 +184,7 @@ export default new Vuex.Store({
           context.commit('GET_ARTICLEDETAIL', response.data)
         })
         .catch(() => {
+          this.$router.push('/404')
           // console.log(error)
         })
     },
@@ -233,6 +234,7 @@ export default new Vuex.Store({
           context.commit('SIGNUP', response.data.key)
         })
         .catch(() => {
+          alert('다시 시도해주세요')
           // console.log(error)
         })
     },

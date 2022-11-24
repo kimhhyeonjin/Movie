@@ -89,6 +89,7 @@ export default {
           this.checkIsLike()
         })
         .catch((error) => {
+          this.$router.push('/404')
           console.log(error)
         })
     },

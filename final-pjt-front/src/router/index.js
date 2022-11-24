@@ -15,6 +15,7 @@ import ArticleForm from '@/views/ArticleForm'
 import ArticleUpdateForm from '@/views/ArticleUpdateForm'
 import CommentList from '@/views/CommentList'
 import ReviewList from '@/views/ReviewList'
+import NotFound404 from '@/views/NotFound404'
 
 Vue.use(VueRouter)
 
@@ -93,6 +94,15 @@ const routes = [
     path: '/communities/articles/:article_id/comments/',
     name: 'CommentList',
     component: CommentList
+  },
+  {
+    path: '/404',
+    name: 'NotFound404',
+    component: NotFound404
+  },
+  {
+    path: '*',
+    redirect: '/404'
   },
 ]
 
