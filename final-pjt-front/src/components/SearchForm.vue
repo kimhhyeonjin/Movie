@@ -5,7 +5,7 @@
     <div id="search"> 
       <input type="text" v-model.trim="keyword" class="form-control" placeholder="영화 제목/내용을 검색해보세요 :)">
     </div>
-    <button @click="GetKeyword" style="background-color: skyblue; height: 45px; border-radius: 12px;">검색!!</button>
+    <button @click="GetKeyword" style="background-color: skyblue; height: 45px; border-radius: 12px;">검색</button>
   </div>
 </template>
 
@@ -18,11 +18,17 @@ export default {
     }
   },
   methods: {
+    getMovies() {
+      this.$store.dispatch('getMovies')
+    },
     GetKeyword() {
       this.$emit('get-keyword', this.keyword)
       this.keyword = ''
-    }
-  }
+    },
+  },
+  created() {
+    this.getMovies()
+  },
 }
 </script>
 

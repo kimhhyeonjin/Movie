@@ -89,6 +89,7 @@ export default {
         },
       })
         .then(() => {
+          console.log(this.$router)
           this.$router.push({name: 'CommunityView'})
         })
         .catch((error) => {

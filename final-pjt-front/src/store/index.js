@@ -53,6 +53,9 @@ export default new Vuex.Store({
     GET_ARTICLELIST(state, articles) {
       state.articles = articles
     },
+    NO_ARTICLELIST(state) {
+      state.articles = []
+    },
     GET_ARTICLEDETAIL(state, article) {
       state.article = article
     },
@@ -95,9 +98,6 @@ export default new Vuex.Store({
       axios({
         method: 'get',
         url: `${API_URL}/movies/`,
-        headers: {
-          Authorization: `Token ${context.state.token}`
-        },
       })
         .then((response) => {
           context.commit('GET_MOVIES', response.data)
@@ -169,7 +169,7 @@ export default new Vuex.Store({
           context.commit('GET_ARTICLELIST', response.data)
         })
         .catch(() => {
-          // console.log(error)
+          context.commit('NO_ARTICLELIST')
         })
     },
     getArticleDetail(context, payload) {
