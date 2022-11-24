@@ -77,8 +77,8 @@ export default {
           this.followingsCnt = response.data.followings.length
           this.getMovie()
         })
-        .catch((error) => {
-          console.log(error)
+        .catch(() => {
+          this.$router.push('/404')
         })
     },
     getMovie() {
@@ -94,8 +94,8 @@ export default {
             this.likeMovies = response.data
           }
         })
-        .catch((error) => {
-          console.log(error)
+        .catch(() => {
+          this.$router.push('/404')
         })
     },
   },

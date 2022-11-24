@@ -94,8 +94,9 @@ export default {
           this.checkIsFollow()
           this.getMovie()
         })
-        .catch((error) => {
-          console.log(error)
+        .catch(() => {
+          this.$router.push('/404')
+          // console.log(error)
         })
     },
     checkIsFollow() {
@@ -118,8 +119,9 @@ export default {
             this.likeMovies = response.data
           }
         })
-        .catch((error) => {
-          console.log(error)
+        .catch(() => {
+          this.$router.push('/404')
+          // console.log(error)
         })
     },
     followUser() {
@@ -146,12 +148,14 @@ export default {
             this.isFollow = response.data.isFollow
             this.userData()
           })
-          .catch((error) => {
-            console.log(error)
+          .catch(() => {
+            this.$router.push('/404')
+            // console.log(error)
           })
         })
-        .catch((error) => {
-          console.log(error)
+        .catch(() => {
+          this.$router.push('/404')
+          // console.log(error)
         })
     },
   },
