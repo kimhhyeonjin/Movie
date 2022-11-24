@@ -5,6 +5,7 @@ import SearchView from '@/views/SearchView'
 import RecommendView from '@/views/RecommendView'
 import CommunityView from '@/views/CommunityView'
 import MypageView from '@/views/MypageView'
+import UserpageView from '@/views/UserpageView'
 import SignupView from '@/views/SignupView'
 import LoginView from '@/views/LoginView'
 import LogoutView from '@/views/LogoutView'
@@ -42,6 +43,11 @@ const routes = [
     path: '/mypage/:username',
     name: 'MypageView',
     component: MypageView
+  },
+  {
+    path: '/userpage/:username',
+    name: 'UserpageView',
+    component: UserpageView
   },
   {
     path: '/signup',
