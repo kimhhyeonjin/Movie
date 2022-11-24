@@ -61,9 +61,11 @@ export default {
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap'); */
+/* @import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
 #app {
-  font-family: 'Black Han Sans', Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Jua', Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
