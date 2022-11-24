@@ -2,9 +2,6 @@
   <div class="reviewform">
     <h3>리뷰 작성</h3>
     <form @submit.prevent="checkLogin">
-      <!-- <label for="content">내용 : &nbsp; </label> -->
-      <!-- <textarea id="content" cols="30" rows="1" v-model="content"></textarea> -->
-      <!-- <input cols="10" rows="1" v-model.trim="content" class="form-control" type="text" placeholder="리뷰를 작성해주세요 :)" disabled style="width: 1000px;"><br> -->
       <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="리뷰를 작성해주세요 :)" rows="1" v-model.trim="content" style="width: 1000px;"></textarea><br>
       <input type="submit" id="submit" value="등록" style="background-color: skyblue">
     </form>
@@ -30,10 +27,11 @@ export default {
   },
   methods: {
     checkLogin() {
-      if (this.isLogin === true) { 
+      if (this.isLogin === true) {
         this.createReview()
       } else {
         alert('로그인이 필요한 서비스 입니다.')
+        this.$router.push({ name: 'LoginView'})
       }
     },
     createReview() {

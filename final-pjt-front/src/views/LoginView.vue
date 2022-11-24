@@ -11,7 +11,6 @@
       <br>
       <input type="submit" value="로그인">
     </form>
-    <input @click="goToSignup" type="submit" value="회원가입">
   </div>
 </template>
 
